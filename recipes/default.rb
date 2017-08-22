@@ -18,19 +18,23 @@
 # kernel parameters, install the binaries and apply latest patch.
 
 # Set up and configure the oracle user.
-include_recipe 'oracle::oracle_user_config'
+
+## Replace these code with Oracle preinstall package
+#include_recipe 'oracle::oracle_user_config'
 
 ## Install dependencies and configure kernel parameters.
 # Node attribute changes for 12c, if default[:oracle][:rdbms][:dbbin_version] is set to 12c
-if node[:oracle][:rdbms][:dbbin_version] == "12c"
-  node.set[:oracle][:rdbms][:deps] = node[:oracle][:rdbms][:deps_12c]
-  include_recipe 'oracle::deps_install'
-else
-  include_recipe 'oracle::deps_install'
-end
+#if node[:oracle][:rdbms][:dbbin_version] == "12c"
+#  node.set[:oracle][:rdbms][:deps] = node[:oracle][:rdbms][:deps_12c]
+#  include_recipe 'oracle::deps_install'
+#else
+#  include_recipe 'oracle::deps_install'
+#end
 
 # Setting up kernel parameters
-include_recipe 'oracle::kernel_params'
+#include_recipe 'oracle::kernel_params'
+
+include_recipe 'oracle::preinstall'
 
 # Baseline install for Oracle itself
 include_recipe 'oracle::dbbin' unless node[:oracle][:rdbms][:is_installed]

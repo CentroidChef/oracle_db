@@ -16,10 +16,10 @@
 #
 
 ## Settings specific to the Oracle user.
-default[:oracle][:user][:uid] = 201
-default[:oracle][:user][:gid] = 201
+default[:oracle][:user][:uid] = 54321
+default[:oracle][:user][:gid] = 54321
 default[:oracle][:user][:shell] = '/bin/ksh'
-default[:oracle][:user][:sup_grps] = {'dba' => 202, 'bckpdba' => 203, 'dgdba' => 204, 'kmdba' => 205}
+default[:oracle][:user][:sup_grps] = {'dba' => 54322, 'bckpdba' => 54324, 'dgdba' => 54325, 'kmdba' => 54326}
 default[:oracle][:user][:pw_set] = false
 default[:oracle][:user][:edb] = 'oracle'
 default[:oracle][:user][:edb_item] = 'foo'
@@ -77,8 +77,8 @@ default[:oracle][:rdbms][:env_12c] = {'ORACLE_BASE' => node[:oracle][:ora_base],
                                   'ORACLE_HOME' => node[:oracle][:rdbms][:ora_home_12c],
                                   'PATH' => "/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/usr/sbin:#{node[:oracle][:ora_base]}/dba/bin:#{node[:oracle][:rdbms][:ora_home_12c]}/bin:#{node[:oracle][:rdbms][:ora_home_12c]}/OPatch"}
 
-default[:oracle][:rdbms][:install_files] = ['https://https-server.example.localdomain/path/to/p10404530_112030_Linux-x86-64_1of7.zip',
-                                            'https://https-server.example.localdomain/path/to/p10404530_112030_Linux-x86-64_2of7.zip']
+default[:oracle][:rdbms][:install_files] = ['http://10.0.2.2/~georgezhang/linuxamd64_12102_database_1of2.zip',
+                                            'http://10.0.2.2/~georgezhang/linuxamd64_12102_database_2of2.zip']
 
 # Client dependencies
 default[:oracle][:client][:deps] = ['binutils', 'compat-libcap1', 'compat-libstdc++-33', 'compat-libstdc++-33.i686', 'gcc', 'gcc-c++', 'glibc', 'glibc.i686',
@@ -101,8 +101,8 @@ default[:oracle][:rdbms][:system_pw] = 'system_pw_goes_here'
 default[:oracle][:rdbms][:dbsnmp_pw] = 'dbsnmp_pw_goes_here'
 
 # Settings related to patching.
-default[:oracle][:rdbms][:opatch_update_url] = 'https://https-server.example.localdomain/path/to/p6880880_112000_Linux-x86-64.zip'
-default[:oracle][:rdbms][:latest_patch][:url] = 'https://https-server.example.localdomain/path/to/p16619892_112030_Linux-x86-64.zip'
+default[:oracle][:rdbms][:opatch_update_url] = 'http://10.0.2.2/~georgezhang/p6880880_121010_Linux-x86-64.zip'
+default[:oracle][:rdbms][:latest_patch][:url] = 'http://10.0.2.2/~georgezhang/p25171037_121020_Linux-x86-64.zip'
 
 # Settings related to client patching.
 default[:oracle][:client][:opatch_update_url] = 'https://https-server.example.localdomain/path/to/p6880880_112000_Linux-x86-64.zip'
@@ -113,7 +113,7 @@ default[:oracle][:client][:latest_patch][:url] = 'https://https-server.example.l
 # up until , and excluding, the first '_', but this is not guaranteed to
 # always be the case.
 default[:oracle][:rdbms][:latest_patch][:dirname] = '16619892'
-default[:oracle][:rdbms][:latest_patch][:dirname_12c] = '18031528'
+default[:oracle][:rdbms][:latest_patch][:dirname_12c] = '25171037'
 default[:oracle][:rdbms][:latest_patch][:is_installed] = false
 
 # Client patch folder

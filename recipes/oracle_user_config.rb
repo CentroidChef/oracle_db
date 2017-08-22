@@ -27,12 +27,22 @@ group 'oinstall' do
   gid node[:oracle][:user][:gid]
 end
 
+# to-do: verify the direcoty mode
+=begin directory '/home/oracle' do
+  owner 'oracle'
+  group 'oinstall'
+  mode '0755'
+  action :create
+end 
+=end
+
 user 'oracle' do
   uid node[:oracle][:user][:uid]
   gid node[:oracle][:user][:gid]
   shell node[:oracle][:user][:shell]
   comment 'Oracle Administrator'
-  supports :manage_home => true
+  manage_home true
+  #supports :manage_home => true
 end
 
 yum_package File.basename(node[:oracle][:user][:shell])
