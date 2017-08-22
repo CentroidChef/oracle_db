@@ -1,4 +1,4 @@
-name             'centroid_oracle_db'
+name             'oracle_db'
 maintainer       'George Zhang'
 maintainer_email 'georgejzhang@gmail.com'
 license          'Apache 2.0'

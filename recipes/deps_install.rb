@@ -17,6 +17,6 @@
 ## Install Oracle RDBMS' dependencies.
 #
 
-node[:oracle][:rdbms][:deps].each do |dep|
+node[:oracle_db][:rdbms][:deps].each do |dep|
   yum_package dep
 end

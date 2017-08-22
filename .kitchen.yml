@@ -17,9 +17,9 @@ suites:
   - name: default
     run_list:
       #- recipe[test-swap::default]
-      - recipe[oracle::default]
+      - recipe[oracle_db::default]
     attributes:
-      oracle:
+      oracle_db:
         user:
           pw_set: True
         rdbms:

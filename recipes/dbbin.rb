@@ -19,24 +19,24 @@
 
 # Fixing an issue with oraInventory, if it already exists from a client
 # install.
-file "#{node[:oracle][:ora_inventory]}/ContentsXML/comps.xml" do
-  only_if { File.directory?("#{node[:oracle][:ora_inventory]}/ContentsXML" ) }
+file "#{node[:oracle_db][:ora_inventory]}/ContentsXML/comps.xml" do
+  only_if { File.directory?("#{node[:oracle_db][:ora_inventory]}/ContentsXML" ) }
   mode '00664'
 end
-file "#{node[:oracle][:ora_inventory]}/ContentsXML/libs.xml" do
-  only_if { File.directory?("#{node[:oracle][:ora_inventory]}/ContentsXML" ) }
+file "#{node[:oracle_db][:ora_inventory]}/ContentsXML/libs.xml" do
+  only_if { File.directory?("#{node[:oracle_db][:ora_inventory]}/ContentsXML" ) }
   mode '00664'
 end
 # If client is installed first, changing group ownership to avoid
 # a permission issue.
 execute "chown_back_to_oinstall" do
-  only_if { File.directory?("#{node[:oracle][:ora_inventory]}/ContentsXML" ) }
+  only_if { File.directory?("#{node[:oracle_db][:ora_inventory]}/ContentsXML" ) }
   command "chown -R oracle:oinstall *"
-  cwd node[:oracle][:ora_inventory]
+  cwd node[:oracle_db][:ora_inventory]
 end
 
 # Creating $ORACLE_BASE and the install directory.
-[node[:oracle][:ora_base], node[:oracle][:rdbms][:install_dir]].each do |dir|
+[node[:oracle_db][:ora_base], node[:oracle_db][:rdbms][:install_dir]].each do |dir|
   directory dir do
     owner 'oracle'
     group 'oinstall'
@@ -51,30 +51,30 @@ yum_package 'unzip'
 # Fetching the install media with curl and unzipping them.
 # We run two resources to avoid chef-client's runaway memory usage resulting
 # in the kernel killing it.
-node[:oracle][:rdbms][:install_files].each do |zip_file|
+node[:oracle_db][:rdbms][:install_files].each do |zip_file|
   execute "fetch_oracle_media_#{zip_file}" do
     command "curl -kO #{zip_file}"
     user "oracle"
     group 'oinstall'
-    cwd node[:oracle][:rdbms][:install_dir]
+    cwd node[:oracle_db][:rdbms][:install_dir]
   end
 
   execute "unzip_oracle_media_#{zip_file}" do
     command "unzip -o #{File.basename(zip_file)}"
     user "oracle"
     group 'oinstall'
-    cwd node[:oracle][:rdbms][:install_dir]
+    cwd node[:oracle_db][:rdbms][:install_dir]
   end
 end
 
 # This oraInst.loc specifies the standard oraInventory location.
-file "#{node[:oracle][:ora_base]}/oraInst.loc" do
+file "#{node[:oracle_db][:ora_base]}/oraInst.loc" do
   owner "oracle"
   group 'oinstall'
   content "inst_group=oinstall\ninventory_loc=/opt/oraInventory"
 end
 
-directory node[:oracle][:ora_inventory] do
+directory node[:oracle_db][:ora_inventory] do
   owner 'oracle'
   group 'oinstall'
   mode '0755'
@@ -82,14 +82,14 @@ directory node[:oracle][:ora_inventory] do
 end
 
 # Filesystem template.
-template "#{node[:oracle][:rdbms][:install_dir]}/db11R23.rsp" do
+template "#{node[:oracle_db][:rdbms][:install_dir]}/db11R23.rsp" do
   owner 'oracle'
   group 'oinstall'
   mode '0644'
 end
 
 # Filesystem template.
-template "#{node[:oracle][:rdbms][:install_dir]}/db12c.rsp" do
+template "#{node[:oracle_db][:rdbms][:install_dir]}/db12c.rsp" do
   owner 'oracle'
   group 'oinstall'
   mode '0644'
@@ -101,34 +101,34 @@ end
 # We also ignore an exit status of 6: runInstaller fails to realise that
 # prerequisites are indeed met on CentOS 6.4.
 
-if node[:oracle][:rdbms][:dbbin_version] == "11g"
+if node[:oracle_db][:rdbms][:dbbin_version] == "11g"
  
   bash 'run_rdbms_installer' do
-    cwd "#{node[:oracle][:rdbms][:install_dir]}/database"
-    environment (node[:oracle][:rdbms][:env])
-    code "sudo -Eu oracle ./runInstaller -showProgress -silent -waitforcompletion -ignoreSysPrereqs -responseFile #{node[:oracle][:rdbms][:install_dir]}/db11R23.rsp -invPtrLoc #{node[:oracle][:ora_base]}/oraInst.loc"
+    cwd "#{node[:oracle_db][:rdbms][:install_dir]}/database"
+    environment (node[:oracle_db][:rdbms][:env])
+    code "sudo -Eu oracle ./runInstaller -showProgress -silent -waitforcompletion -ignoreSysPrereqs -responseFile #{node[:oracle_db][:rdbms][:install_dir]}/db11R23.rsp -invPtrLoc #{node[:oracle_db][:ora_base]}/oraInst.loc"
     returns [0, 6]
   end
 
   execute 'root.sh_rdbms' do
-    command "#{node[:oracle][:rdbms][:ora_home]}/root.sh"
+    command "#{node[:oracle_db][:rdbms][:ora_home]}/root.sh"
   end
  
-  template "#{node[:oracle][:rdbms][:ora_home]}/network/admin/listener.ora" do
+  template "#{node[:oracle_db][:rdbms][:ora_home]}/network/admin/listener.ora" do
     owner 'oracle'
     group 'oinstall'
     mode '0644'
   end
   # Starting listener 
   execute 'start_listener' do
-    command "#{node[:oracle][:rdbms][:ora_home]}/bin/lsnrctl start"
+    command "#{node[:oracle_db][:rdbms][:ora_home]}/bin/lsnrctl start"
     user 'oracle'
     group 'oinstall'
-    environment (node[:oracle][:rdbms][:env])
+    environment (node[:oracle_db][:rdbms][:env])
   end
  
   # Install sqlplus startup config file.
-  cookbook_file "#{node[:oracle][:rdbms][:ora_home]}/sqlplus/admin/glogin.sql" do
+  cookbook_file "#{node[:oracle_db][:rdbms][:ora_home]}/sqlplus/admin/glogin.sql" do
     owner 'oracle'
     group 'oinstall'
     mode '0644'
@@ -142,32 +142,32 @@ if node[:oracle][:rdbms][:dbbin_version] == "11g"
 else
  
   bash 'run_rdbms_installer' do
-    cwd "#{node[:oracle][:rdbms][:install_dir]}/database"
-    environment (node[:oracle][:rdbms][:env_12c])
-    code "sudo -Eu oracle ./runInstaller -showProgress -silent -waitforcompletion -ignoreSysPrereqs -responseFile #{node[:oracle][:rdbms][:install_dir]}/db12c.rsp -invPtrLoc #{node[:oracle][:ora_base]}/oraInst.loc"
+    cwd "#{node[:oracle_db][:rdbms][:install_dir]}/database"
+    environment (node[:oracle_db][:rdbms][:env_12c])
+    code "sudo -Eu oracle ./runInstaller -showProgress -silent -waitforcompletion -ignoreSysPrereqs -responseFile #{node[:oracle_db][:rdbms][:install_dir]}/db12c.rsp -invPtrLoc #{node[:oracle_db][:ora_base]}/oraInst.loc"
     returns [0, 6]
   end
  
   execute 'root.sh_rdbms' do
-    command "#{node[:oracle][:rdbms][:ora_home_12c]}/root.sh"
+    command "#{node[:oracle_db][:rdbms][:ora_home_12c]}/root.sh"
   end
  
   # Commented out to get DBEXPRESS work out of the box
-  #template "#{node[:oracle][:rdbms][:ora_home_12c]}/network/admin/listener.ora" do
+  #template "#{node[:oracle_db][:rdbms][:ora_home_12c]}/network/admin/listener.ora" do
   #  owner 'oracle'
   #  group 'oinstall'
   #  mode '0644'
   #end
  
   execute 'start_listener' do
-    command "#{node[:oracle][:rdbms][:ora_home_12c]}/bin/lsnrctl start"
+    command "#{node[:oracle_db][:rdbms][:ora_home_12c]}/bin/lsnrctl start"
     user 'oracle'
     group 'oinstall'
-    environment (node[:oracle][:rdbms][:env_12c])
+    environment (node[:oracle_db][:rdbms][:env_12c])
   end
  
   # Install sqlplus startup config file.
-  cookbook_file "#{node[:oracle][:rdbms][:ora_home_12c]}/sqlplus/admin/glogin.sql" do
+  cookbook_file "#{node[:oracle_db][:rdbms][:ora_home_12c]}/sqlplus/admin/glogin.sql" do
     owner 'oracle'
     group 'oinstall'
     mode '0644'
@@ -181,7 +181,7 @@ else
 end
 
 execute 'install_dir_cleanup' do
-  command "rm -rf #{node[:oracle][:rdbms][:install_dir]}/*"
+  command "rm -rf #{node[:oracle_db][:rdbms][:install_dir]}/*"
 end
 
 service 'oracle' do
@@ -191,7 +191,7 @@ end
 # Set a flag to indicate the rdbms has been successfully installed.
 ruby_block 'set_rdbms_install_flag' do
   block do
-    node.set[:oracle][:rdbms][:is_installed] = true
+    node.set[:oracle_db][:rdbms][:is_installed] = true
   end
   action :create
 end

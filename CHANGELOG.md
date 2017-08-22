@@ -9,7 +9,7 @@ Cookbook relaunched (aririikonen/oracle).
 ## 1.2.0:
 
 * Support for 12c, including DBEXPRESS
-* Fixed node[:oracle][:rdbms][:install_info][:version_str], now it works with two digit version numbers (i.e. 11.2.0.3.10)
+* Fixed node[:oracle_db][:rdbms][:install_info][:version_str], now it works with two digit version numbers (i.e. 11.2.0.3.10)
 
 ## 1.1.2:
 

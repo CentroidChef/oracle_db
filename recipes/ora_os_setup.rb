@@ -18,16 +18,16 @@
 # kernel parameters.
 
 # Set up and configure the oracle user.
-include_recipe 'oracle::oracle_user_config'
+include_recipe 'oracle_db::oracle_db_user_config'
 
 ## Install dependencies and configure kernel parameters.
-# Node attribute changes for 12c, if default[:oracle][:rdbms][:dbbin_version] is set to 12c
-if node[:oracle][:rdbms][:dbbin_version] == "12c"
-  node.set[:oracle][:rdbms][:deps] = node[:oracle][:rdbms][:deps_12c]
-  include_recipe 'oracle::deps_install'
+# Node attribute changes for 12c, if default[:oracle_db][:rdbms][:dbbin_version] is set to 12c
+if node[:oracle_db][:rdbms][:dbbin_version] == "12c"
+  node.set[:oracle_db][:rdbms][:deps] = node[:oracle_db][:rdbms][:deps_12c]
+  include_recipe 'oracle_db::deps_install'
 else
-  include_recipe 'oracle::deps_install'
+  include_recipe 'oracle_db::deps_install'
 end
 
 # Setting up kernel parameters
-include_recipe 'oracle::kernel_params'
+include_recipe 'oracle_db::kernel_params'

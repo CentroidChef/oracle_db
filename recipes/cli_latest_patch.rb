@@ -18,7 +18,7 @@
 #
 
 
-unless node[:oracle][:client][:latest_patch][:is_installed]
+unless node[:oracle_db][:client][:latest_patch][:is_installed]
 
   # Fetching the latest 11.2.0.3.0 patch media with curl.
   # We use curl instead of wget because the latter caused Chef Client's
@@ -26,11 +26,11 @@ unless node[:oracle][:client][:latest_patch][:is_installed]
   bash 'fetch_latest_patch_media_11R23' do
     user "oracli"
     group 'oinstall'
-    cwd node[:oracle][:client][:install_dir]
+    cwd node[:oracle_db][:client][:install_dir]
     code <<-EOH
-    curl -kO #{node[:oracle][:client][:latest_patch][:url]}
-    curl -kO #{node[:oracle][:client][:opatch_update_url]}
-    unzip #{File.basename(node[:oracle][:client][:latest_patch][:url])}
+    curl -kO #{node[:oracle_db][:client][:latest_patch][:url]}
+    curl -kO #{node[:oracle_db][:client][:opatch_update_url]}
+    unzip #{File.basename(node[:oracle_db][:client][:latest_patch][:url])}
     EOH
   end
 
@@ -38,28 +38,28 @@ unless node[:oracle][:client][:latest_patch][:is_installed]
   bash 'patch_client_opatch' do
     user 'oracli'
     group 'oracli'
-    cwd node[:oracle][:client][:ora_home]
+    cwd node[:oracle_db][:client][:ora_home]
     code <<-EOH3
     rm -rf OPatch.OLD
     mv OPatch OPatch.OLD
-    unzip #{node[:oracle][:client][:install_dir]}/#{File.basename(node[:oracle][:client][:opatch_update_url])}
+    unzip #{node[:oracle_db][:client][:install_dir]}/#{File.basename(node[:oracle_db][:client][:opatch_update_url])}
     EOH3
   end
   
   # Making sure ocm.rsp response file is present.
-  if !node[:oracle][:client][:response_file_url].empty?
+  if !node[:oracle_db][:client][:response_file_url].empty?
     execute "fetch_response_file" do
-      command "curl -kO #{node[:oracle][:client][:response_file_url]}"
+      command "curl -kO #{node[:oracle_db][:client][:response_file_url]}"
       user "oracli"
       group 'oracli'
-      cwd node[:oracle][:client][:install_dir]
+      cwd node[:oracle_db][:client][:install_dir]
     end
   else
     execute 'gen_response_file' do
       command "echo | ./OPatch/ocm/bin/emocmrsp -output ./ocm.rsp foo bar && chmod 0644 ./ocm.rsp"
       user "oracli"
       group 'oracli'
-      cwd node[:oracle][:client][:ora_home]
+      cwd node[:oracle_db][:client][:ora_home]
     end
   end
 
@@ -67,26 +67,26 @@ unless node[:oracle][:client][:latest_patch][:is_installed]
   bash 'apply_latest_patch_client' do
     user "oracli"
     group 'oinstall'
-    cwd "#{node[:oracle][:client][:install_dir]}/#{node[:oracle][:client][:latest_patch][:dirname]}"
-    environment (node[:oracle][:client][:env])
-    code "#{node[:oracle][:client][:ora_home]}/OPatch/opatch apply -silent -ocmrf #{node[:oracle][:client][:ora_home]}/ocm.rsp"
+    cwd "#{node[:oracle_db][:client][:install_dir]}/#{node[:oracle_db][:client][:latest_patch][:dirname]}"
+    environment (node[:oracle_db][:client][:env])
+    code "#{node[:oracle_db][:client][:ora_home]}/OPatch/opatch apply -silent -ocmrf #{node[:oracle_db][:client][:ora_home]}/ocm.rsp"
     notifies :create, "ruby_block[set_latest_patch_install_flag]", :immediately
     notifies :create, "ruby_block[set_client_version_attr]", :immediately
   end
   
   # Set the rdbms version attribute.
-  include_recipe 'oracle::get_cli_version'
+  include_recipe 'oracle_db::get_cli_version'
     
   # Set flag indicating latest patch has been applied.
   ruby_block 'set_latest_patch_install_flag' do
     block do
-      node.set[:oracle][:client][:latest_patch][:is_installed] = true
+      node.set[:oracle_db][:client][:latest_patch][:is_installed] = true
     end
     action :nothing
   end
 
   # Cleaning up the downloaded latest patch files
   execute 'install_dir_client_cleanup_lp' do
-    command "rm -rf #{node[:oracle][:client][:install_dir]}/*"
+    command "rm -rf #{node[:oracle_db][:client][:install_dir]}/*"
   end
 end 

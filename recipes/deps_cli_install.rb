@@ -17,6 +17,6 @@
 ## Install Oracle Client's dependencies.
 #
 
-node[:oracle][:client][:deps].each do |dep|
+node[:oracle_db][:client][:deps].each do |dep|
   yum_package dep
 end

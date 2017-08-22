@@ -2,11 +2,11 @@
 ulimit -S -c unlimited > /dev/null 2>&1
 
 EDITOR=/bin/vi
-ORACLE_BASE=<%= node[:oracle][:ora_base] %>
-ORACLE_HOME=<%= node[:oracle][:rdbms][:ora_home] %>
+ORACLE_BASE=<%= node[:oracle_db][:ora_base] %>
+ORACLE_HOME=<%= node[:oracle_db][:rdbms][:ora_home] %>
 ORACLE_SID=
 ORACLE_UNQNAME=
-ORA_ENV=<%= File.basename node[:oracle][:rdbms][:ora_home] %>
+ORA_ENV=<%= File.basename node[:oracle_db][:rdbms][:ora_home] %>
 ORACLE_HOSTNAME=`hostname -f`
 export EDITOR ORACLE_BASE ORACLE_HOME ORACLE_SID ORA_ENV ORACLE_HOSTNAME
 
@@ -23,10 +23,10 @@ export PATH
 
 
 
-alias checkdumps='du -hs <%= node[:oracle][:ora_base] %>/admin/*/*'
+alias checkdumps='du -hs <%= node[:oracle_db][:ora_base] %>/admin/*/*'
 alias dba='sqlplus "/ as sysdba"'
 alias pp='ps -ef | grep ora_pmon'
-alias cdora='cd <%= node[:oracle][:ora_base] %>'
+alias cdora='cd <%= node[:oracle_db][:ora_base] %>'
 alias ls='ls --color=auto'
 
 

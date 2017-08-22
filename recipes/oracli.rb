@@ -20,12 +20,12 @@
 
 
 # Set up and configure the oracle client user.
-include_recipe 'oracle::oracli_user_config'
+include_recipe 'oracle_db::oracli_user_config'
 
 # Install dependencies and configure kernel parameters.
-include_recipe 'oracle::deps_cli_install'
-include_recipe 'oracle::kernel_params'
+include_recipe 'oracle_db::deps_cli_install'
+include_recipe 'oracle_db::kernel_params'
 
 # Baseline install for Oracle client + latest patch.
-include_recipe 'oracle::clibin' unless node[:oracle][:client][:is_installed]
-include_recipe 'oracle::cli_latest_patch' unless node[:oracle][:client][:latest_patch][:is_installed]
+include_recipe 'oracle_db::clibin' unless node[:oracle_db][:client][:is_installed]
+include_recipe 'oracle_db::cli_latest_patch' unless node[:oracle_db][:client][:latest_patch][:is_installed]

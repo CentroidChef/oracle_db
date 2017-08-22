@@ -51,16 +51,16 @@ Quickstart (database)
 
         name "ora_quickstart"
         description "Role applied to Oracle quickstart test machines."
-        run_list 'recipe[oracle]', 'recipe[oracle::logrotate_alert_log]', 'recipe[oracle::logrotate_listener]', 'recipe[oracle::createdb]'
-        override_attributes :oracle => {:rdbms => {:latest_patch => {:url => 'https://secure.server.localdomain/path/to/p16619892_112030_Linux-x86-64.zip'}, :opatch_update_url => 'https://secure.server.localdomain/path/to/p6880880_112000_Linux-x86-64.zip', :install_files => ['https://secure.server.localdomain/path/to/p10404530_112030_Linux-x86-64_1of7.zip', 'https://secure.server.localdomain/path/to/p10404530_112030_Linux-x86-64_2of7.zip']}} 
+        run_list 'recipe[oracle]', 'recipe[oracle_db::logrotate_alert_log]', 'recipe[oracle_db::logrotate_listener]', 'recipe[oracle_db::createdb]'
+        override_attributes :oracle_db => {:rdbms => {:latest_patch => {:url => 'https://secure.server.localdomain/path/to/p16619892_112030_Linux-x86-64.zip'}, :opatch_update_url => 'https://secure.server.localdomain/path/to/p6880880_112000_Linux-x86-64.zip', :install_files => ['https://secure.server.localdomain/path/to/p10404530_112030_Linux-x86-64_1of7.zip', 'https://secure.server.localdomain/path/to/p10404530_112030_Linux-x86-64_2of7.zip']}} 
 
-* For 12c install, add `node[:oracle][:rdbms][:dbbin_version]`
+* For 12c install, add `node[:oracle_db][:rdbms][:dbbin_version]`
   override_attribute to the role.
 
         name "ora_12c_quickstart"
         description "Role applied to Oracle 12c quickstart test machines."
-        run_list 'recipe[base]', 'recipe[oracle]', 'recipe[oracle::logrotate_alert_log]', 'recipe[oracle::logrotate_listener]', 'recipe[oracle::createdb]'
-        override_attributes :oracle => {:rdbms => {:latest_patch => {:url => 'https://secure.server.localdomain/path/to/p18031528_121010_Linux-x86-64.zip'}, :opatch_update_url => 'https://secure.server.localdomain/path/to/p6880880_121010_Linux-x86-64.zip', :install_files => ['https://secure.server.localdomain/path/to/linuxamd64_12c_database_1of2.zip', 'https://secure.server.localdomain/path/to/linuxamd64_12c_database_2of2.zip'], :dbbin_version => '12c'}}
+        run_list 'recipe[base]', 'recipe[oracle]', 'recipe[oracle_db::logrotate_alert_log]', 'recipe[oracle_db::logrotate_listener]', 'recipe[oracle_db::createdb]'
+        override_attributes :oracle_db => {:rdbms => {:latest_patch => {:url => 'https://secure.server.localdomain/path/to/p18031528_121010_Linux-x86-64.zip'}, :opatch_update_url => 'https://secure.server.localdomain/path/to/p6880880_121010_Linux-x86-64.zip', :install_files => ['https://secure.server.localdomain/path/to/linuxamd64_12c_database_1of2.zip', 'https://secure.server.localdomain/path/to/linuxamd64_12c_database_2of2.zip'], :dbbin_version => '12c'}}
 
 * You need to set up an encrypted data bag item to secure the oracle
   user's password. See Opscode's docs site for details on encrypted
@@ -68,8 +68,8 @@ Quickstart (database)
   [encrypted data bag doc](http://docs.opscode.com/chef/essentials_data_bags.html#encrypt-a-data-bag)
   Your encrypted item requires a key named `pw`, whose value is the
   password of the oracle user- you can set that to whatever you want.
-  You must set the value of `node[:oracle][:user][:edb]` to the name
-  of your data bag, and that of `node[:oracle][:user][:edb_item]` to
+  You must set the value of `node[:oracle_db][:user][:edb]` to the name
+  of your data bag, and that of `node[:oracle_db][:user][:edb_item]` to
   the name of the encrypted item; the defaults are `oracle` and
   `foo`, respectively.
 
@@ -108,8 +108,8 @@ Quickstart (client)
 
         name "ora_cli_quickstart"
         description "Role applied to Oracle Client quickstart test machines."
-        run_list 'recipe[oracle::oracli]'
-        override_attributes :oracle => {:client => {:latest_patch => {:url => 'https://secure.server.localdomain/path/to/p16619892_112030_Linux-x86-64.zip'}, :opatch_update_url => 'https://secure.server.localdomain/path/to/p6880880_112000_Linux-x86-64.zip', :install_files => ['https://secure.server.localdomain/path/to/p10404530_112030_Linux-x86-64_4of7.zip']}} 
+        run_list 'recipe[oracle_db::oracli]'
+        override_attributes :oracle_db => {:client => {:latest_patch => {:url => 'https://secure.server.localdomain/path/to/p16619892_112030_Linux-x86-64.zip'}, :opatch_update_url => 'https://secure.server.localdomain/path/to/p6880880_112000_Linux-x86-64.zip', :install_files => ['https://secure.server.localdomain/path/to/p10404530_112030_Linux-x86-64_4of7.zip']}} 
 
 * You need to set up an encrypted data bag item to secure the oracli
   user's password. See Opscode's docs site for details on encrypted
@@ -117,8 +117,8 @@ Quickstart (client)
   [encrypted data bag doc](http://docs.opscode.com/chef/essentials_data_bags.html#encrypt-a-data-bag)
   Your encrypted item requires a key named `pw`, whose value is the
   password of the oracli user- you can set that to whatever you want.
-  You must set the value of `node[:oracle][:cliuser][:edb]` to the name
-  of your data bag, and that of `node[:oracle][:cliuser][:edb_item]` to
+  You must set the value of `node[:oracle_db][:cliuser][:edb]` to the name
+  of your data bag, and that of `node[:oracle_db][:cliuser][:edb_item]` to
   the name of the encrypted item; the defaults are `oracli` and
   `foo`, respectively.
 
@@ -241,16 +241,16 @@ check the certification matrix on My Oracle Support:
 Attributes
 ==========
 
-oracle defines a single top-level namespace: `:oracle`. Values
+oracle defines a single top-level namespace: `:oracle_db`. Values
 that pertain to the whole Oracle setup (not only the RDBMS) are
 defined there directly:
 
-* `node[:oracle][:ora_base]` - sets the Oracle base's absolute pathname,
+* `node[:oracle_db][:ora_base]` - sets the Oracle base's absolute pathname,
 defaults to `/opt/oracle`.
-* `node[:oracle][:ora_inventory]` - sets oraInventory's absolute pathname,
+* `node[:oracle_db][:ora_inventory]` - sets oraInventory's absolute pathname,
 defaults to `/opt/oraInventory`.
 
-`:oracle` has four children: 
+`:oracle_db` has four children: 
 
 * `:user`
 * `:cliuser`
@@ -260,138 +260,138 @@ defaults to `/opt/oraInventory`.
 Attributes under `:user` are specific to the oracle user, as you may
 have guessed:
 
-* `node[:oracle][:user][:uid]`
-* `node[:oracle][:user][:gid]`
-* `node[:oracle][:user][:shell]`- note that this is set to `/bin/ksh`
+* `node[:oracle_db][:user][:uid]`
+* `node[:oracle_db][:user][:gid]`
+* `node[:oracle_db][:user][:shell]`- note that this is set to `/bin/ksh`
   by default.
-* `node[:oracle][:user][:sup_grps]` - sets the oracle user's
+* `node[:oracle_db][:user][:sup_grps]` - sets the oracle user's
   supplementary groups, a Hash whose keys are group names, and
   whose values are gids. The default value is  `{'dba' => 202}`.
-* `node[:oracle][:user][:pw_set]` - a flag that indicates whether the
+* `node[:oracle_db][:user][:pw_set]` - a flag that indicates whether the
   `oracle_user_config` recipe has set the password of the oracle
   user (and can thus skip doing it again); defaults to `false`.
-* `node[:oracle][:user][:edb]` - sets the name of the data bag from
+* `node[:oracle_db][:user][:edb]` - sets the name of the data bag from
   which we'll fetch the encrypted item storing the oracle user's
   password. Defaults to `oracle`.
-* `node[:oracle][:user][:edb_item]` - sets the name of the encrypted
+* `node[:oracle_db][:user][:edb_item]` - sets the name of the encrypted
   item in which the oracle user's password is stored. Defaults to
   `foo`.
 
 Attributes under `:cliuser` are specific to the oracli user, as you may
 have guessed:
 
-* `node[:oracle][:cliuser][:uid]`
-* `node[:oracle][:cliuser][:gid]`
-* `node[:oracle][:cliuser][:shell]`- note that this is set to `/bin/ksh`
+* `node[:oracle_db][:cliuser][:uid]`
+* `node[:oracle_db][:cliuser][:gid]`
+* `node[:oracle_db][:cliuser][:shell]`- note that this is set to `/bin/ksh`
   by default.
-* `node[:oracle][:cliuser][:sup_grps]` - sets the oracli user's
+* `node[:oracle_db][:cliuser][:sup_grps]` - sets the oracli user's
   supplementary groups, a Hash whose keys are group names, and
   whose values are gids. The default value is  `{'oinstall' => 201}`.
-* `node[:oracle][:cliuser][:pw_set]` - a flag that indicates whether the
+* `node[:oracle_db][:cliuser][:pw_set]` - a flag that indicates whether the
   `oracli_user_config` recipe has set the password of the oracli
   user (and can thus skip doing it again); defaults to `false`.
-* `node[:oracle][:cliuser][:edb]` - sets the name of the data bag from
+* `node[:oracle_db][:cliuser][:edb]` - sets the name of the data bag from
   which we'll fetch the encrypted item storing the oracli user's
   password. Defaults to `oracli`.
-* `node[:oracle][:cliuser][:edb_item]` - sets the name of the encrypted
+* `node[:oracle_db][:cliuser][:edb_item]` - sets the name of the encrypted
   item in which the oracli user's password is stored. Defaults to
   `foo`.
 
 Attributes under `:rdbms` relate to the Oracle RDBMS proper,
 rather unsurprisingly:
 
-* `node[:oracle][:rdbms][:dbbin_version]` - selection for 12c.
-* `node[:oracle][:rdbms][:ora_home]` - sets the oracle home's absolute
-  pathname; defaults to  `#{node[:oracle][:ora_base]}/11R23`.
-* `node[:oracle][:rdbms][:is_installed]` - flag to indicate whether
+* `node[:oracle_db][:rdbms][:dbbin_version]` - selection for 12c.
+* `node[:oracle_db][:rdbms][:ora_home]` - sets the oracle home's absolute
+  pathname; defaults to  `#{node[:oracle_db][:ora_base]}/11R23`.
+* `node[:oracle_db][:rdbms][:is_installed]` - flag to indicate whether
   the dbbin recipe has installed the RDBMS, and can thus be skipped.
-* `node[:oracle][:rdbms][:install_info]` - a Hash storing information
+* `node[:oracle_db][:rdbms][:install_info]` - a Hash storing information
   about the RDBMS installed on the node (version, patch number, and
   timestamp of last patching); defaults to the empty Hash. See the
   `get_version recipe` for greater detail.
-* `node[:oracle][:rdbms][:install_dir]` - sets the oracle installation
-  directory's absolute pathname; defaults to `#{node[:oracle][:ora_base]}/install_dir`</br>
-* `node[:oracle][:rdbms][:response_file_url]` - sets the URL of the
+* `node[:oracle_db][:rdbms][:install_dir]` - sets the oracle installation
+  directory's absolute pathname; defaults to `#{node[:oracle_db][:ora_base]}/install_dir`</br>
+* `node[:oracle_db][:rdbms][:response_file_url]` - sets the URL of the
   response file you want Chef to use instead of having it generate a
   basic ocm.rsp itself.
-* `node[:oracle][:rdbms][:deps]` - an Array storing the package names
+* `node[:oracle_db][:rdbms][:deps]` - an Array storing the package names
   of the Oracle RDBMS' dependencies.
-* `node[:oracle][:rdbms][:env]` - a Hash of variable names/values that
+* `node[:oracle_db][:rdbms][:env]` - a Hash of variable names/values that
   makes up the RDBMS-specific environment for the oracle user.
-* `node[:oracle][:rdbms][:install_files]` - an Array of URLs that
+* `node[:oracle_db][:rdbms][:install_files]` - an Array of URLs that
   specify the locations of the Oracle RDBMS' installation files:
   `p10404530_112030_Linux-x86-64_1of7.zip` and `p10404530_112030_Linux-x86-64_2of7.zip`.
-* `node[:oracle][:rdbms][:sys_pw]` - sets the password for the `SYS`
+* `node[:oracle_db][:rdbms][:sys_pw]` - sets the password for the `SYS`
   default open database user. Has a default placeholder value.
-* `node[:oracle][:rdbms][:system_pw]` - sets the password for the `SYSTEM`
+* `node[:oracle_db][:rdbms][:system_pw]` - sets the password for the `SYSTEM`
   default open database user. Has a default placeholder value.
-* `node[:oracle][:rdbms][:dbsnmp_pw]` - sets the password for the `DBSNMP`
+* `node[:oracle_db][:rdbms][:dbsnmp_pw]` - sets the password for the `DBSNMP`
   default open database user. Has a default placeholder value.
-* `node[:oracle][:rdbms][:opatch_update_url]` - sets the URL of the
+* `node[:oracle_db][:rdbms][:opatch_update_url]` - sets the URL of the
   OPatch update (`p6880880_112000_Linux-x86-64.zip)`.
-* `node[:oracle][:rdbms][:latest_patch][:url]` - URL of the latest
+* `node[:oracle_db][:rdbms][:latest_patch][:url]` - URL of the latest
   Oracle RDBMS patch (`p16619892_112030_Linux-x86-64.zip`).
-* `node[:oracle][:rdbms][:latest_patch][:dirname]` - sets the name of
+* `node[:oracle_db][:rdbms][:latest_patch][:dirname]` - sets the name of
   the latest patch's expanded directory. Will typically match the
   part of the latest patch's filename following the initial 'p', up
   until (and exclusive of) the first `_` (`16619892`, in our
   case), but this is not guaranteed.
-* `node[:oracle][:rdbms][:latest_patch][:is_installed]` - flag to
+* `node[:oracle_db][:rdbms][:latest_patch][:is_installed]` - flag to
   indicate whether `latest_dbpatch` recipe has patched the RDBMS, and
   can thus be skipped.
-* `node[:oracle][:rdbms][:dbs]` - a Hash whose keys are database names
+* `node[:oracle_db][:rdbms][:dbs]` - a Hash whose keys are database names
   and whose values are Booleans. A value of true indicates that the
   database has already been created, and should thus be skipped by
   the createdb recipe. Defaults to the empty Hash.
-* `node[:oracle][:rdbms][:dbs_root]` - sets the pathname of the root
+* `node[:oracle_db][:rdbms][:dbs_root]` - sets the pathname of the root
   directory for the databases.
-* `node[:oracle][:rdbms][:dbconsole][:emconfig]` - `true` indicates,
+* `node[:oracle_db][:rdbms][:dbconsole][:emconfig]` - `true` indicates,
   that em dbconsole will be configured for all databases after creating
   them.
-* `node[:oracle][:rdbms][:dbconsole][:sysman_pw]` - sets the password
+* `node[:oracle_db][:rdbms][:dbconsole][:sysman_pw]` - sets the password
   for the `SYSMAN` default open database user. Has a default placeholder
   value.
-* `node[:oracle][:rdbms][:dbconsole][:notification_email]` - sets the email
+* `node[:oracle_db][:rdbms][:dbconsole][:notification_email]` - sets the email
   for em dbconsole notifications. Has a default placeholder value.
-* `node[:oracle][:rdbms][:dbconsole][:outgoing_mail]` - sets the mail
+* `node[:oracle_db][:rdbms][:dbconsole][:outgoing_mail]` - sets the mail
   server hostname. Uses `mailhost` as the default placeholder value.
-* `node[:oracle][:rdbms][:db_create_template]` - sets the db template
+* `node[:oracle_db][:rdbms][:db_create_template]` - sets the db template
   file name. Has a default placeholder value.
 
 Attributes under `:client` relate to the Oracle Client proper,
 rather unsurprisingly:
 
-* `node[:oracle][:client][:ora_home]` - sets the oracli home's absolute
-  pathname; defaults to  `#{node[:oracle][:ora_base]}/11R23cli`.
-* `node[:oracle][:client][:is_installed]` - flag to indicate whether
+* `node[:oracle_db][:client][:ora_home]` - sets the oracli home's absolute
+  pathname; defaults to  `#{node[:oracle_db][:ora_base]}/11R23cli`.
+* `node[:oracle_db][:client][:is_installed]` - flag to indicate whether
   the clibin recipe has installed the client, and can thus be skipped.
-* `node[:oracle][:client][:install_info]` - a Hash storing information
+* `node[:oracle_db][:client][:install_info]` - a Hash storing information
   about the client installed on the node (version, patch number, and
   timestamp of last patching); defaults to the empty Hash. See the
   `get_version recipe` for greater detail.
-* `node[:oracle][:client][:install_dir]` - sets the oracli installation
-  directory's absolute pathname; defaults to `#{node[:oracle][:ora_base]}/install_dir_client`
-* `node[:oracle][:client][:response_file_url]` - sets the URL of the
+* `node[:oracle_db][:client][:install_dir]` - sets the oracli installation
+  directory's absolute pathname; defaults to `#{node[:oracle_db][:ora_base]}/install_dir_client`
+* `node[:oracle_db][:client][:response_file_url]` - sets the URL of the
   response file you want Chef to use instead of having it generate a
   basic ocm.rsp itself.
 * Client recipes use the same dependencies as for the database install
-  `node[:oracle][:rdbms][:deps]` - an Array storing the package names
+  `node[:oracle_db][:rdbms][:deps]` - an Array storing the package names
   of the Oracle RDBMS' and Oracle Client' dependencies.
-* `node[:oracle][:client][:env]` - a Hash of variable names/values that
+* `node[:oracle_db][:client][:env]` - a Hash of variable names/values that
   makes up the RDBMS-specific environment for the oracle user.</br>
-* `node[:oracle][:client][:install_files]` - an Array of URLs that
+* `node[:oracle_db][:client][:install_files]` - an Array of URLs that
   specify the locations of the Oracle Client' installation files:
   `p10404530_112030_Linux-x86-64_4of7.zip`.
-* `node[:oracle][:client][:opatch_update_url]` - sets the URL of the
+* `node[:oracle_db][:client][:opatch_update_url]` - sets the URL of the
   OPatch update (`p6880880_112000_Linux-x86-64.zip)`.
-* `node[:oracle][:client][:latest_patch][:url]` - URL of the latest
+* `node[:oracle_db][:client][:latest_patch][:url]` - URL of the latest
   Oracle Client patch (`p16619892_112030_Linux-x86-64.zip`).
-* `node[:oracle][:client][:latest_patch][:dirname]` - sets the name of
+* `node[:oracle_db][:client][:latest_patch][:dirname]` - sets the name of
   the latest patch's expanded directory. Will typically match the
   part of the latest patch's filename following the initial 'p', up
   until (and exclusive of) the first `_` (`16619892`, in our
   case), but this is not guaranteed.
-* `node[:oracle][:client][:latest_patch][:is_installed]` - flag to
+* `node[:oracle_db][:client][:latest_patch][:is_installed]` - flag to
   indicate whether `latest_dbpatch` recipe has patched the Client, and
   can thus be skipped.
 
@@ -405,11 +405,11 @@ By order of appearance in a typical workflow:
 
 Includes 5 recipes, which are, in order:
 
-* `oracle::oracle_user_config`
-* `oracle::deps_install`
-* `oracle::kernel_params`
-* `oracle::dbbin` unless `node[:oracle][:rdbms][:is_installed]`'s value is `true`.
-* `oracle::latest_dbpatch` unless `node[:oracle][:rdbms][:latest_patch][:is_installed]`'s value is `true`.
+* `oracle_db::oracle_db_user_config`
+* `oracle_db::deps_install`
+* `oracle_db::kernel_params`
+* `oracle_db::dbbin` unless `node[:oracle_db][:rdbms][:is_installed]`'s value is `true`.
+* `oracle_db::latest_dbpatch` unless `node[:oracle_db][:rdbms][:latest_patch][:is_installed]`'s value is `true`.
 
 IOW, we set up the oracle user, install Oracle's dependencies, tweak
 the kernel's parameters, then install the Oracle binaries (unless
@@ -420,11 +420,11 @@ we've done so already, and patch them to the latest patch version
 
 Includes 5 recipes, which are, in order:
 
-* `oracle::oracli_user_config`
-* `oracle::deps_cli_install`
-* `oracle::kernel_params`
-* `oracle::clibin` unless `node[:oracle][:client][:is_installed]`'s value is `true`.
-* `oracle::cli_latest_patch` unless `node[:oracle][:client][:latest_patch][:is_installed]`'s value is `true`.
+* `oracle_db::oracli_user_config`
+* `oracle_db::deps_cli_install`
+* `oracle_db::kernel_params`
+* `oracle_db::clibin` unless `node[:oracle_db][:client][:is_installed]`'s value is `true`.
+* `oracle_db::cli_latest_patch` unless `node[:oracle_db][:client][:latest_patch][:is_installed]`'s value is `true`.
 
 IOW, we set up the oracli user, install Oracle's dependencies, tweak
 the kernel's parameters, then install the Oracle Client binaries (unless
@@ -434,16 +434,16 @@ we've done so already, and patch them to the latest patch version
 ## `oracle_user_config`
 
 Create and configure the oracle user. Its password is only set if
-`node[:oracle][:user][:pw_set]`'s value isn't true .
-`node[:oracle][:user][:pw_set]`'s value is `false` by default; it's
+`node[:oracle_db][:user][:pw_set]`'s value isn't true .
+`node[:oracle_db][:user][:pw_set]`'s value is `false` by default; it's
 flipped to `true` after we set the password, meaning that, if you want
 to change the password after the first Chef run, you'll have to flip
 it back.
 
 The recipe expects the oracle user password to be stored in an
 encrypted data bag item; the bag's name is controlled by the
-`node[:oracle][:user][:edb]` attribute, whose default value is
-`oracle`. The item's name is controlled by the `node[:oracle][:user][:edb_item]`
+`node[:oracle_db][:user][:edb]` attribute, whose default value is
+`oracle`. The item's name is controlled by the `node[:oracle_db][:user][:edb_item]`
 attribute, whose default value is `foo`.
 
 The recipe requires the encrypted item to include a key named `pw`,
@@ -455,16 +455,16 @@ For more detail on encrypted data bags, see:
 ## `oracli_user_config`
 
 Create and configure the oracli user. Its password is only set if
-`node[:oracle][:cliuser][:pw_set]`'s value isn't true .
-`node[:oracle][:cliuser][:pw_set]`'s value is `false` by default; it's
+`node[:oracle_db][:cliuser][:pw_set]`'s value isn't true .
+`node[:oracle_db][:cliuser][:pw_set]`'s value is `false` by default; it's
 flipped to `true` after we set the password, meaning that, if you want
 to change the password after the first Chef run, you'll have to flip
 it back.
 
 The recipe expects the oracli user password to be stored in an
 encrypted data bag item; the bag's name is controlled by the
-`node[:oracle][:cliuser][:edb]` attribute, whose default value is
-`oracli`. The item's name is controlled by the `node[:oracle][:cliuser][:edb_item]`
+`node[:oracle_db][:cliuser][:edb]` attribute, whose default value is
+`oracli`. The item's name is controlled by the `node[:oracle_db][:cliuser][:edb_item]`
 attribute, whose default value is `foo`.
 
 The recipe requires the encrypted item to include a key named `pw`,
@@ -476,12 +476,12 @@ For more detail on encrypted data bags, see:
 ## `deps_install`
 
 Installs the Oracle RDBMS' dependencies, which are specified as an
-Array of package names that's the value of `node[:oracle][:rdbms][:deps]`.
+Array of package names that's the value of `node[:oracle_db][:rdbms][:deps]`.
 
 ## `deps_cli_install`
 
 Installs the Oracle Client' dependencies, which are specified as an
-Array of package names that's the value of `node[:oracle][:client][:deps]`.
+Array of package names that's the value of `node[:oracle_db][:client][:deps]`.
 
 ## `kernel_params`
 
@@ -492,9 +492,9 @@ Configures kernel parameters for Oracle. We deploy a config file to
 
 Includes 3 recipes, which are, in order:
 
-* `oracle::oracle_user_config`
-* `oracle::deps_install`
-* `oracle::kernel_params`
+* `oracle_db::oracle_db_user_config`
+* `oracle_db::deps_install`
+* `oracle_db::kernel_params`
 
 The recipe will set up the oracle user, install Oracle's dependencies
 and tweak the kernel's parameters.
@@ -502,7 +502,7 @@ and tweak the kernel's parameters.
 ## `dbbin`
 
 Installs Oracle RDBMS binaries. The install files are specified as
-an Array of URLs that's the value of the `node[:oracle][:rdbms][:install_files]`
+an Array of URLs that's the value of the `node[:oracle_db][:rdbms][:install_files]`
 attribute.
 
 **Note:** If you use the `ora_quickstart` or `ora_12c_quickstart` roles, 
@@ -511,7 +511,7 @@ they will override the values.
 ## `clibin`
 
 Installs Oracle Client binaries. The install files are specified as
-an Array of URLs that's the value of the `node[:oracle][:client][:install_files]`
+an Array of URLs that's the value of the `node[:oracle_db][:client][:install_files]`
 attribute.
 
 **Note:** If you use the `ora_cli_quickstart` role, it will override the values.
@@ -519,7 +519,7 @@ attribute.
 ## `latest_dbpatch`
 
 Installs latest patch for Oracle RDBMS. The patch file is specified
-as a URL that's the value of `node[:oracle][:rdbms][:latest_patch][:url]`.
+as a URL that's the value of `node[:oracle_db][:rdbms][:latest_patch][:url]`.
 
 Also remember to update OPatch 6880880 to the latest version.
 
@@ -529,7 +529,7 @@ Previous or new PSU patches should work without many changes. 11.2.0.3.4,
 ## `cli_latest_patch`
 
 Installs latest patch for Oracle Client. The patch file is specified
-as a URL that's the value of `node[:oracle][:client][:latest_patch][:url]`.
+as a URL that's the value of `node[:oracle_db][:client][:latest_patch][:url]`.
 
 Also remember to update OPatch 6880880 to the latest version.
 
@@ -538,7 +538,7 @@ Previous or new PSU patches should work without many changes. 11.2.0.3.4,
 
 ## `get_version`
 
-Included by `latest_dbpatch`. Populates `node[:oracle][:rdbms][:install_info]`'s
+Included by `latest_dbpatch`. Populates `node[:oracle_db][:rdbms][:install_info]`'s
 Hash with key/value pairs that track the patch number, the patch's
 timestamp, and the version string, as extracted from the output of:
 
@@ -546,7 +546,7 @@ timestamp, and the version string, as extracted from the output of:
 
 ## `get_cli_version`
 
-Included by `cli_latest_patch`. Populates `node[:oracle][:client][:install_info]`'s
+Included by `cli_latest_patch`. Populates `node[:oracle_db][:client][:install_info]`'s
 Hash with key/value pairs that track the patch number, the patch's
 timestamp, and the version string, as extracted from the output of:
 
@@ -554,7 +554,7 @@ timestamp, and the version string, as extracted from the output of:
 
 ## `createdb`
 
-Creates databases. Iterates over the keys of the `node[:oracle][:rdbms][:dbs]`'s
+Creates databases. Iterates over the keys of the `node[:oracle_db][:rdbms][:dbs]`'s
 Hash, creating a database for each key whose value isn't truthy.
 You're meant to specify this Hash yourself, for example in a role,
 or as part of the bootstrap command line, e.g.:
@@ -583,7 +583,7 @@ Usage Notes
   to fit local practice.
 * The database template (created by DBCA) is not an Oracle best
   practise, feel free to replace it with one of your own creation.
-* The database filesystem root is parameterised, using `node[:oracle][:rdbms][:dbs_root]`.
+* The database filesystem root is parameterised, using `node[:oracle_db][:rdbms][:dbs_root]`.
   This attribute is leveraged in the database template we ship. If
   you want to do the same with your own database template, you'll
   have to turn it into a Chef template as well (and use
@@ -592,7 +592,7 @@ Usage Notes
   email address for updates. Use the `$ORACLE_HOME/OPatch/ocm/bin/emocmrsp`
   command to do that (pass it the `-help` switch to check its usage).
   Then put the new reponse file on your HTTPS server and set
-  `node[:oracle][:rdbms][:response_file_url]` to the file's URL.
+  `node[:oracle_db][:rdbms][:response_file_url]` to the file's URL.
 * `dbbin` takes a long time to complete; hence the potential issue
   with CHEF-3045 for open source Chef Server users.
 * By default the em console will be configured, so this will extend the

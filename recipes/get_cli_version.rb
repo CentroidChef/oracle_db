@@ -28,10 +28,10 @@
 #  - the version string: 11.2.0.3.5 in our example.
 ruby_block 'set_client_version_attr' do
   block do
-    patch_info = %x(sudo -u oracle #{node[:oracle][:client][:ora_home]}/OPatch/opatch lsinventory -bugs_fixed | grep -E '(#{node[:oracle][:rdbms][:latest_patch][:dirname]}) {3}\\1.* DATABASE PATCH SET UPDATE')
-    node.set[:oracle][:client][:install_info][:patch_nr] = patch_info[/(?!^.+)\b\d+/]
-    node.set[:oracle][:client][:install_info][:timestamp_str] = patch_info[/[MTWFS][a-z]+ [JFMASOND][a-z]+ \d{2} \d{2}:\d{2}:\d{2} [A-Z]+ \d{4}/]
-    node.set[:oracle][:client][:install_info][:version_str] = patch_info[/(\d+\.)+\d+/]
+    patch_info = %x(sudo -u oracle #{node[:oracle_db][:client][:ora_home]}/OPatch/opatch lsinventory -bugs_fixed | grep -E '(#{node[:oracle_db][:rdbms][:latest_patch][:dirname]}) {3}\\1.* DATABASE PATCH SET UPDATE')
+    node.set[:oracle_db][:client][:install_info][:patch_nr] = patch_info[/(?!^.+)\b\d+/]
+    node.set[:oracle_db][:client][:install_info][:timestamp_str] = patch_info[/[MTWFS][a-z]+ [JFMASOND][a-z]+ \d{2} \d{2}:\d{2}:\d{2} [A-Z]+ \d{4}/]
+    node.set[:oracle_db][:client][:install_info][:version_str] = patch_info[/(\d+\.)+\d+/]
   end
   action :nothing
 end

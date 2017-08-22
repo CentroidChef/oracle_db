@@ -24,7 +24,7 @@
 # group, else useradd will raise an error.
 # Therefore, we must create the oinstall group before we do the oracle user.
 group 'oinstall' do
-  gid node[:oracle][:user][:gid]
+  gid node[:oracle_db][:user][:gid]
 end
 
 # to-do: verify the direcoty mode
@@ -37,22 +37,22 @@ end
 =end
 
 user 'oracle' do
-  uid node[:oracle][:user][:uid]
-  gid node[:oracle][:user][:gid]
-  shell node[:oracle][:user][:shell]
+  uid node[:oracle_db][:user][:uid]
+  gid node[:oracle_db][:user][:gid]
+  shell node[:oracle_db][:user][:shell]
   comment 'Oracle Administrator'
   manage_home true
   #supports :manage_home => true
 end
 
-yum_package File.basename(node[:oracle][:user][:shell])
+yum_package File.basename(node[:oracle_db][:user][:shell])
 
 # Configure the oracle user.
 # Make it a member of the appropriate supplementary groups, and
 # ensure its environment will be set up properly upon login.
-node[:oracle][:user][:sup_grps].each_key do |grp|
+node[:oracle_db][:user][:sup_grps].each_key do |grp|
   group grp do
-    gid node[:oracle][:user][:sup_grps][grp]
+    gid node[:oracle_db][:user][:sup_grps][grp]
     members ['oracle']
     append true
   end
@@ -72,12 +72,12 @@ execute 'gen_dir_colors' do
   group 'oinstall'
   cwd '/home/oracle'
   creates '/home/oracle/.dir_colors'
-  only_if {node[:oracle][:user][:shell] != '/bin/bash'}
+  only_if {node[:oracle_db][:user][:shell] != '/bin/bash'}
 end
 
 # Set the oracle user's password.
-unless node[:oracle][:user][:pw_set]
-  ora_edb_item = Chef::EncryptedDataBagItem.load(node[:oracle][:user][:edb], node[:oracle][:user][:edb_item])
+unless node[:oracle_db][:user][:pw_set]
+  ora_edb_item = Chef::EncryptedDataBagItem.load(node[:oracle_db][:user][:edb], node[:oracle_db][:user][:edb_item])
   ora_pw = ora_edb_item['pw']
 
   # Note that output formatter will display the password on your terminal.
@@ -87,7 +87,7 @@ unless node[:oracle][:user][:pw_set]
   
   ruby_block 'set_pw_attr' do
     block do
-      node.set[:oracle][:user][:pw_set] = true
+      node.set[:oracle_db][:user][:pw_set] = true
     end
     action :create
   end
