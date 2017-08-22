@@ -1,8 +1,13 @@
 Description
 ===========
+This cookbook is forked from the "oracle" cookbook by Ari Riikonen (https://github.com/aririikonen/oracle)
 
 Installs and configures the Oracle RDBMS, patches it to the latest
 version and creates databases.
+
+Change log v1.3.0
+  - use Oracle preinstall package to setup Oracle prereqs
+  - updated Oracle 12.1 patch to use April 2017 PSU
 
 New features on v1.2.0
 
