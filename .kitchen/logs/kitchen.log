@@ -1,0 +1,3 @@
+I, [2017-08-22T17:30:14.406568 #35896]  INFO -- Kitchen: -----> Starting Kitchen (v1.16.0)
+I, [2017-08-22T17:30:15.335357 #35896]  INFO -- Kitchen: -----> Converging <default-elastic-oel-7-x86-64>...
+I, [2017-08-22T17:36:20.311206 #35896]  INFO -- Kitchen: -----> Kitchen is finished. (6m5.92s)

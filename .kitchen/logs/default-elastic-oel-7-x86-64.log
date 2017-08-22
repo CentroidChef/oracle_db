@@ -1,0 +1,302 @@
+I, [2017-08-22T17:30:15.335422 #35896]  INFO -- default-elastic-oel-7-x86-64: -----> Converging <default-elastic-oel-7-x86-64>...
+I, [2017-08-22T17:30:15.335949 #35896]  INFO -- default-elastic-oel-7-x86-64: Preparing files for transfer
+I, [2017-08-22T17:30:15.336034 #35896]  INFO -- default-elastic-oel-7-x86-64: Preparing dna.json
+I, [2017-08-22T17:30:15.336460 #35896]  INFO -- default-elastic-oel-7-x86-64: Resolving cookbook dependencies with Berkshelf 6.2.0...
+I, [2017-08-22T17:30:15.572344 #35896]  INFO -- default-elastic-oel-7-x86-64: Removing non-cookbook files before transfer
+I, [2017-08-22T17:30:15.578453 #35896]  INFO -- default-elastic-oel-7-x86-64: Preparing solo.rb
+I, [2017-08-22T17:30:15.629016 #35896]  INFO -- default-elastic-oel-7-x86-64: -----> Chef Omnibus installation detected (install only if missing)
+I, [2017-08-22T17:30:15.652864 #35896]  INFO -- default-elastic-oel-7-x86-64: Transferring files to <default-elastic-oel-7-x86-64>
+I, [2017-08-22T17:30:16.698408 #35896]  INFO -- default-elastic-oel-7-x86-64: Starting Chef Client, version 13.3.42
+I, [2017-08-22T17:30:18.104347 #35896]  INFO -- default-elastic-oel-7-x86-64: resolving cookbooks for run list: ["oracle_db::default"]
+I, [2017-08-22T17:30:18.168470 #35896]  INFO -- default-elastic-oel-7-x86-64: Synchronizing Cookbooks:
+I, [2017-08-22T17:30:18.173621 #35896]  INFO -- default-elastic-oel-7-x86-64:   - oracle_db (1.2.2)
+I, [2017-08-22T17:30:18.182476 #35896]  INFO -- default-elastic-oel-7-x86-64: Installing Cookbook Gems:
+I, [2017-08-22T17:30:18.182526 #35896]  INFO -- default-elastic-oel-7-x86-64: Compiling Cookbooks...
+I, [2017-08-22T17:30:18.212036 #35896]  INFO -- default-elastic-oel-7-x86-64: Converging 42 resources
+I, [2017-08-22T17:30:18.212089 #35896]  INFO -- default-elastic-oel-7-x86-64: Recipe: oracle_db::oracle_user_config
+I, [2017-08-22T17:30:18.260961 #35896]  INFO -- default-elastic-oel-7-x86-64:   * group[oinstall] action create
+I, [2017-08-22T17:30:18.261025 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create group oinstall
+I, [2017-08-22T17:30:18.298823 #35896]  INFO -- default-elastic-oel-7-x86-64:   * linux_user[oracle] action create
+I, [2017-08-22T17:30:18.298878 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create user oracle
+I, [2017-08-22T17:31:18.956378 #35896]  INFO -- default-elastic-oel-7-x86-64:   * yum_package[ksh] action install
+I, [2017-08-22T17:31:18.956682 #35896]  INFO -- default-elastic-oel-7-x86-64:     - install version 20120801-34.el7 of package ksh
+I, [2017-08-22T17:31:19.274343 #35896]  INFO -- default-elastic-oel-7-x86-64:   * group[dba] action create
+I, [2017-08-22T17:31:19.274419 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create group dba
+I, [2017-08-22T17:31:19.322864 #35896]  INFO -- default-elastic-oel-7-x86-64:   * group[bckpdba] action create
+I, [2017-08-22T17:31:19.322940 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create group bckpdba
+I, [2017-08-22T17:31:19.485783 #35896]  INFO -- default-elastic-oel-7-x86-64:   * group[dgdba] action create
+I, [2017-08-22T17:31:19.485849 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create group dgdba
+I, [2017-08-22T17:31:19.538326 #35896]  INFO -- default-elastic-oel-7-x86-64:   * group[kmdba] action create
+I, [2017-08-22T17:31:19.538397 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create group kmdba
+I, [2017-08-22T17:31:19.538437 #35896]  INFO -- default-elastic-oel-7-x86-64:   * template[/home/oracle/.profile] action create_if_missing
+I, [2017-08-22T17:31:19.545264 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create new file /home/oracle/.profile
+I, [2017-08-22T17:31:19.545304 #35896]  INFO -- default-elastic-oel-7-x86-64:     - update content in file /home/oracle/.profile from none to 83b296
+I, [2017-08-22T17:31:19.545322 #35896]  INFO -- default-elastic-oel-7-x86-64:     --- /home/oracle/.profile	2017-08-22 21:31:18.266996029 +0000
+I, [2017-08-22T17:31:19.545383 #35896]  INFO -- default-elastic-oel-7-x86-64:     +++ /home/oracle/.chef-.profile20170822-13127-pgygjb.profile	2017-08-22 21:31:18.264995029 +0000
+I, [2017-08-22T17:31:19.558039 #35896]  INFO -- default-elastic-oel-7-x86-64:     @@ -1 +1,38 @@
+I, [2017-08-22T17:31:19.558100 #35896]  INFO -- default-elastic-oel-7-x86-64:     +# Enable core files
+I, [2017-08-22T17:31:19.558134 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ulimit -S -c unlimited > /dev/null 2>&1
+I, [2017-08-22T17:31:19.558192 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558214 #35896]  INFO -- default-elastic-oel-7-x86-64:     +EDITOR=/bin/vi
+I, [2017-08-22T17:31:19.558235 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORACLE_BASE=/opt/oracle
+I, [2017-08-22T17:31:19.558248 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORACLE_HOME=/opt/oracle/12R1
+I, [2017-08-22T17:31:19.558268 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORACLE_SID=
+I, [2017-08-22T17:31:19.558279 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORACLE_UNQNAME=
+I, [2017-08-22T17:31:19.558290 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORA_ENV=12R1
+I, [2017-08-22T17:31:19.558308 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORACLE_HOSTNAME=`hostname -f`
+I, [2017-08-22T17:31:19.558327 #35896]  INFO -- default-elastic-oel-7-x86-64:     +export EDITOR ORACLE_BASE ORACLE_HOME ORACLE_SID ORA_ENV ORACLE_HOSTNAME
+I, [2017-08-22T17:31:19.558358 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558377 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558391 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558411 #35896]  INFO -- default-elastic-oel-7-x86-64:     +NLS_DATE_FORMAT='YYYYMMDD.HH24MISS'
+I, [2017-08-22T17:31:19.558428 #35896]  INFO -- default-elastic-oel-7-x86-64:     +NLS_LANG=american_america.al32utf8
+I, [2017-08-22T17:31:19.558448 #35896]  INFO -- default-elastic-oel-7-x86-64:     +export NLS_DATE_FORMAT NLS_LANG
+I, [2017-08-22T17:31:19.558479 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558504 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558539 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558559 #35896]  INFO -- default-elastic-oel-7-x86-64:     +PATH=$PATH:/usr/sbin:$ORACLE_BASE/dba/bin:$ORACLE_HOME/bin:$ORACLE_HOME/OPatch
+I, [2017-08-22T17:31:19.558599 #35896]  INFO -- default-elastic-oel-7-x86-64:     +export PATH
+I, [2017-08-22T17:31:19.558611 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558635 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558646 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558663 #35896]  INFO -- default-elastic-oel-7-x86-64:     +alias checkdumps='du -hs /opt/oracle/admin/*/*'
+I, [2017-08-22T17:31:19.558675 #35896]  INFO -- default-elastic-oel-7-x86-64:     +alias dba='sqlplus "/ as sysdba"'
+I, [2017-08-22T17:31:19.558710 #35896]  INFO -- default-elastic-oel-7-x86-64:     +alias pp='ps -ef | grep ora_pmon'
+I, [2017-08-22T17:31:19.558722 #35896]  INFO -- default-elastic-oel-7-x86-64:     +alias cdora='cd /opt/oracle'
+I, [2017-08-22T17:31:19.558741 #35896]  INFO -- default-elastic-oel-7-x86-64:     +alias ls='ls --color=auto'
+I, [2017-08-22T17:31:19.558751 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558762 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558833 #35896]  INFO -- default-elastic-oel-7-x86-64:     +
+I, [2017-08-22T17:31:19.558846 #35896]  INFO -- default-elastic-oel-7-x86-64:     +HOSTNAME=`hostname | awk -F. '{print $1}'`
+I, [2017-08-22T17:31:19.558857 #35896]  INFO -- default-elastic-oel-7-x86-64:     +PS1='[$USER@$HOSTNAME] -->${ORACLE_SID}<-- $ORA_ENV
+I, [2017-08-22T17:31:19.558875 #35896]  INFO -- default-elastic-oel-7-x86-64:     +$PWD> '
+I, [2017-08-22T17:31:19.559726 #35896]  INFO -- default-elastic-oel-7-x86-64:     +export PS1
+I, [2017-08-22T17:31:19.559768 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change owner from '' to 'oracle'
+I, [2017-08-22T17:31:19.590287 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change group from '' to 'oinstall'
+I, [2017-08-22T17:31:19.621634 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[gen_dir_colors] action run
+I, [2017-08-22T17:31:19.621690 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute /usr/bin/dircolors -p > /home/oracle/.dir_colors
+I, [2017-08-22T17:31:19.621709 #35896]  INFO -- default-elastic-oel-7-x86-64:   * cookbook_file[/etc/security/limits.d/oracle.conf] action create
+I, [2017-08-22T17:31:19.621724 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create new file /etc/security/limits.d/oracle.conf
+I, [2017-08-22T17:31:19.621738 #35896]  INFO -- default-elastic-oel-7-x86-64:     - update content in file /etc/security/limits.d/oracle.conf from none to 260a9c
+I, [2017-08-22T17:31:19.621751 #35896]  INFO -- default-elastic-oel-7-x86-64:     --- /etc/security/limits.d/oracle.conf	2017-08-22 21:31:18.347036026 +0000
+I, [2017-08-22T17:31:19.621775 #35896]  INFO -- default-elastic-oel-7-x86-64:     +++ /etc/security/limits.d/.chef-oracle20170822-13127-j0m0v5.conf	2017-08-22 21:31:18.347036026 +0000
+I, [2017-08-22T17:31:19.621801 #35896]  INFO -- default-elastic-oel-7-x86-64:     @@ -1 +1,9 @@
+I, [2017-08-22T17:31:19.621814 #35896]  INFO -- default-elastic-oel-7-x86-64:     +# Lines are commented out when the default limits are already
+I, [2017-08-22T17:31:19.621826 #35896]  INFO -- default-elastic-oel-7-x86-64:     +# equal to, or greater than, the values recommended by Oracle.
+I, [2017-08-22T17:31:19.621838 #35896]  INFO -- default-elastic-oel-7-x86-64:     +#oracle              soft    nofile  1024
+I, [2017-08-22T17:31:19.621851 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle              hard    nofile  65536
+I, [2017-08-22T17:31:19.621863 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle              soft    nproc   2047
+I, [2017-08-22T17:31:19.621882 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle              hard    nproc   16384
+I, [2017-08-22T17:31:19.621895 #35896]  INFO -- default-elastic-oel-7-x86-64:     +#oracle              soft    stack   10240
+I, [2017-08-22T17:31:19.621907 #35896]  INFO -- default-elastic-oel-7-x86-64:     +#oracle              hard    stack   32768
+I, [2017-08-22T17:31:19.621919 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change mode from '' to '0644'
+I, [2017-08-22T17:31:19.621949 #35896]  INFO -- default-elastic-oel-7-x86-64: Recipe: oracle_db::preinstall
+I, [2017-08-22T17:31:43.133444 #35896]  INFO -- default-elastic-oel-7-x86-64:   * yum_package[oracle-rdbms-server-12cR1-preinstall] action install
+I, [2017-08-22T17:31:43.134238 #35896]  INFO -- default-elastic-oel-7-x86-64:     - install version 1.0-6.el7 of package oracle-rdbms-server-12cR1-preinstall
+I, [2017-08-22T17:31:43.134279 #35896]  INFO -- default-elastic-oel-7-x86-64: Recipe: oracle_db::dbbin
+I, [2017-08-22T17:31:43.134296 #35896]  INFO -- default-elastic-oel-7-x86-64:   * file[/opt/oraInventory/ContentsXML/comps.xml] action create (skipped due to only_if)
+I, [2017-08-22T17:31:43.134310 #35896]  INFO -- default-elastic-oel-7-x86-64:   * file[/opt/oraInventory/ContentsXML/libs.xml] action create (skipped due to only_if)
+I, [2017-08-22T17:31:43.134323 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[chown_back_to_oinstall] action run (skipped due to only_if)
+I, [2017-08-22T17:31:43.134335 #35896]  INFO -- default-elastic-oel-7-x86-64:   * directory[/opt/oracle] action create
+I, [2017-08-22T17:31:43.134355 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create new directory /opt/oracle
+I, [2017-08-22T17:31:43.134419 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change mode from '' to '0755'
+I, [2017-08-22T17:31:43.134434 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change owner from '' to 'oracle'
+I, [2017-08-22T17:31:43.134446 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change group from '' to 'oinstall'
+I, [2017-08-22T17:31:43.134458 #35896]  INFO -- default-elastic-oel-7-x86-64:   * directory[/opt/oracle/install_dir] action create
+I, [2017-08-22T17:31:43.134470 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create new directory /opt/oracle/install_dir
+I, [2017-08-22T17:31:43.134497 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change mode from '' to '0755'
+I, [2017-08-22T17:31:43.134510 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change owner from '' to 'oracle'
+I, [2017-08-22T17:31:43.134521 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change group from '' to 'oinstall'
+I, [2017-08-22T17:31:43.415779 #35896]  INFO -- default-elastic-oel-7-x86-64:   * yum_package[unzip] action install (up to date)
+I, [2017-08-22T17:31:57.814696 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[fetch_oracle_media_http://10.0.2.2/~georgezhang/linuxamd64_12102_database_1of2.zip] action run
+I, [2017-08-22T17:31:57.815023 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute curl -kO http://10.0.2.2/~georgezhang/linuxamd64_12102_database_1of2.zip
+I, [2017-08-22T17:32:12.576333 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[unzip_oracle_media_http://10.0.2.2/~georgezhang/linuxamd64_12102_database_1of2.zip] action run
+I, [2017-08-22T17:32:12.576554 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute unzip -o linuxamd64_12102_database_1of2.zip
+I, [2017-08-22T17:32:21.918892 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[fetch_oracle_media_http://10.0.2.2/~georgezhang/linuxamd64_12102_database_2of2.zip] action run
+I, [2017-08-22T17:32:21.919217 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute curl -kO http://10.0.2.2/~georgezhang/linuxamd64_12102_database_2of2.zip
+I, [2017-08-22T17:32:29.088470 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[unzip_oracle_media_http://10.0.2.2/~georgezhang/linuxamd64_12102_database_2of2.zip] action run
+I, [2017-08-22T17:32:29.088687 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute unzip -o linuxamd64_12102_database_2of2.zip
+I, [2017-08-22T17:32:29.088719 #35896]  INFO -- default-elastic-oel-7-x86-64:   * file[/opt/oracle/oraInst.loc] action create
+I, [2017-08-22T17:32:29.088735 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create new file /opt/oracle/oraInst.loc
+I, [2017-08-22T17:32:29.088770 #35896]  INFO -- default-elastic-oel-7-x86-64:     - update content in file /opt/oracle/oraInst.loc from none to aca2f8
+I, [2017-08-22T17:32:29.088790 #35896]  INFO -- default-elastic-oel-7-x86-64:     --- /opt/oracle/oraInst.loc	2017-08-22 21:32:27.851771016 +0000
+I, [2017-08-22T17:32:29.088803 #35896]  INFO -- default-elastic-oel-7-x86-64:     +++ /opt/oracle/.chef-oraInst20170822-13127-98cqy3.loc	2017-08-22 21:32:27.850770516 +0000
+I, [2017-08-22T17:32:29.088823 #35896]  INFO -- default-elastic-oel-7-x86-64:     @@ -1 +1,3 @@
+I, [2017-08-22T17:32:29.088835 #35896]  INFO -- default-elastic-oel-7-x86-64:     +inst_group=oinstall
+I, [2017-08-22T17:32:29.088859 #35896]  INFO -- default-elastic-oel-7-x86-64:     +inventory_loc=/opt/oraInventory
+I, [2017-08-22T17:32:29.088872 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change owner from '' to 'oracle'
+I, [2017-08-22T17:32:29.088912 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change group from '' to 'oinstall'
+I, [2017-08-22T17:32:29.092701 #35896]  INFO -- default-elastic-oel-7-x86-64:   * directory[/opt/oraInventory] action create
+I, [2017-08-22T17:32:29.092734 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create new directory /opt/oraInventory
+I, [2017-08-22T17:32:29.092751 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change mode from '' to '0755'
+I, [2017-08-22T17:32:29.092782 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change owner from '' to 'oracle'
+I, [2017-08-22T17:32:29.092795 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change group from '' to 'oinstall'
+I, [2017-08-22T17:32:29.102418 #35896]  INFO -- default-elastic-oel-7-x86-64:   * template[/opt/oracle/install_dir/db11R23.rsp] action create
+I, [2017-08-22T17:32:29.102452 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create new file /opt/oracle/install_dir/db11R23.rsp
+I, [2017-08-22T17:32:29.102470 #35896]  INFO -- default-elastic-oel-7-x86-64:     - update content in file /opt/oracle/install_dir/db11R23.rsp from none to 4a817c
+I, [2017-08-22T17:32:29.102497 #35896]  INFO -- default-elastic-oel-7-x86-64:     --- /opt/oracle/install_dir/db11R23.rsp	2017-08-22 21:32:27.865778016 +0000
+I, [2017-08-22T17:32:29.102523 #35896]  INFO -- default-elastic-oel-7-x86-64:     +++ /opt/oracle/install_dir/.chef-db11R2320170822-13127-1nk17vt.rsp	2017-08-22 21:32:27.865778016 +0000
+I, [2017-08-22T17:32:29.102537 #35896]  INFO -- default-elastic-oel-7-x86-64:     @@ -1 +1,23 @@
+I, [2017-08-22T17:32:29.102550 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.responseFileVersion=/oracle/install/rspfmt_dbinstall_response_schema_v11_2_0
+I, [2017-08-22T17:32:29.102562 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.option=INSTALL_DB_SWONLY
+I, [2017-08-22T17:32:29.102589 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORACLE_HOSTNAME=default-elastic-oel-7-x86-64.vagrantup.com
+I, [2017-08-22T17:32:29.102610 #35896]  INFO -- default-elastic-oel-7-x86-64:     +UNIX_GROUP_NAME=oinstall
+I, [2017-08-22T17:32:29.102627 #35896]  INFO -- default-elastic-oel-7-x86-64:     +INVENTORY_LOCATION=/opt/oraInventory
+I, [2017-08-22T17:32:29.102647 #35896]  INFO -- default-elastic-oel-7-x86-64:     +SELECTED_LANGUAGES=en
+I, [2017-08-22T17:32:29.102659 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORACLE_HOME=/opt/oracle/12R1
+I, [2017-08-22T17:32:29.102671 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORACLE_BASE=/opt/oracle
+I, [2017-08-22T17:32:29.102682 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.InstallEdition=EE
+I, [2017-08-22T17:32:29.102694 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.EEOptionsSelection=false
+I, [2017-08-22T17:32:29.102707 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.DBA_GROUP=dba
+I, [2017-08-22T17:32:29.102718 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.OPER_GROUP=dba
+I, [2017-08-22T17:32:29.102730 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.isRACOneInstall=false
+I, [2017-08-22T17:32:29.102742 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.config.starterdb.type=GENERAL_PURPOSE
+I, [2017-08-22T17:32:29.102761 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.config.starterdb.memoryOption=false
+I, [2017-08-22T17:32:29.102774 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.config.starterdb.installExampleSchemas=false
+I, [2017-08-22T17:32:29.102800 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.config.starterdb.enableSecuritySettings=true
+I, [2017-08-22T17:32:29.102814 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.config.starterdb.control=DB_CONTROL
+I, [2017-08-22T17:32:29.103296 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.config.starterdb.automatedBackup.enable=false
+I, [2017-08-22T17:32:29.103312 #35896]  INFO -- default-elastic-oel-7-x86-64:     +SECURITY_UPDATES_VIA_MYORACLESUPPORT=false
+I, [2017-08-22T17:32:29.103325 #35896]  INFO -- default-elastic-oel-7-x86-64:     +DECLINE_SECURITY_UPDATES=true
+I, [2017-08-22T17:32:29.103345 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.installer.autoupdates.option=SKIP_UPDATES
+I, [2017-08-22T17:32:29.103358 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change mode from '' to '0644'
+I, [2017-08-22T17:32:29.103370 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change owner from '' to 'oracle'
+I, [2017-08-22T17:32:29.103381 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change group from '' to 'oinstall'
+I, [2017-08-22T17:32:29.107728 #35896]  INFO -- default-elastic-oel-7-x86-64:   * template[/opt/oracle/install_dir/db12c.rsp] action create
+I, [2017-08-22T17:32:29.107766 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create new file /opt/oracle/install_dir/db12c.rsp
+I, [2017-08-22T17:32:29.107795 #35896]  INFO -- default-elastic-oel-7-x86-64:     - update content in file /opt/oracle/install_dir/db12c.rsp from none to 130238
+I, [2017-08-22T17:32:29.107825 #35896]  INFO -- default-elastic-oel-7-x86-64:     --- /opt/oracle/install_dir/db12c.rsp	2017-08-22 21:32:27.869780016 +0000
+I, [2017-08-22T17:32:29.107844 #35896]  INFO -- default-elastic-oel-7-x86-64:     +++ /opt/oracle/install_dir/.chef-db12c20170822-13127-2ep0ao.rsp	2017-08-22 21:32:27.869780016 +0000
+I, [2017-08-22T17:32:29.107858 #35896]  INFO -- default-elastic-oel-7-x86-64:     @@ -1 +1,19 @@
+I, [2017-08-22T17:32:29.107870 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.responseFileVersion=/oracle/install/rspfmt_dbinstall_response_schema_v12.1.0
+I, [2017-08-22T17:32:29.107891 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.option=INSTALL_DB_SWONLY
+I, [2017-08-22T17:32:29.107904 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORACLE_HOSTNAME=default-elastic-oel-7-x86-64.vagrantup.com
+I, [2017-08-22T17:32:29.107916 #35896]  INFO -- default-elastic-oel-7-x86-64:     +UNIX_GROUP_NAME=oinstall
+I, [2017-08-22T17:32:29.107935 #35896]  INFO -- default-elastic-oel-7-x86-64:     +INVENTORY_LOCATION=/opt/oraInventory
+I, [2017-08-22T17:32:29.107948 #35896]  INFO -- default-elastic-oel-7-x86-64:     +SELECTED_LANGUAGES=en
+I, [2017-08-22T17:32:29.107960 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORACLE_HOME=/opt/oracle/12R1
+I, [2017-08-22T17:32:29.107972 #35896]  INFO -- default-elastic-oel-7-x86-64:     +ORACLE_BASE=/opt/oracle
+I, [2017-08-22T17:32:29.107991 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.InstallEdition=EE
+I, [2017-08-22T17:32:29.108003 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.DBA_GROUP=dba
+I, [2017-08-22T17:32:29.108015 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.OPER_GROUP=dba
+I, [2017-08-22T17:32:29.108026 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.BACKUPDBA_GROUP=bckpdba
+I, [2017-08-22T17:32:29.108045 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.DGDBA_GROUP=dgdba
+I, [2017-08-22T17:32:29.108057 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.KMDBA_GROUP=kmdba
+I, [2017-08-22T17:32:29.108068 #35896]  INFO -- default-elastic-oel-7-x86-64:     +SECURITY_UPDATES_VIA_MYORACLESUPPORT=false
+I, [2017-08-22T17:32:29.108447 #35896]  INFO -- default-elastic-oel-7-x86-64:     +DECLINE_SECURITY_UPDATES=true
+I, [2017-08-22T17:32:29.108462 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.installer.autoupdates.option=SKIP_UPDATES
+I, [2017-08-22T17:32:29.108482 #35896]  INFO -- default-elastic-oel-7-x86-64:     +oracle.install.db.isRACOneInstall=false
+I, [2017-08-22T17:32:29.108495 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change mode from '' to '0644'
+I, [2017-08-22T17:32:29.108507 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change owner from '' to 'oracle'
+I, [2017-08-22T17:32:29.108518 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change group from '' to 'oinstall'
+I, [2017-08-22T17:34:29.113251 #35896]  INFO -- default-elastic-oel-7-x86-64:   * bash[run_rdbms_installer] action run
+I, [2017-08-22T17:34:29.113534 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute "bash"  "/tmp/chef-script20170822-13127-1vt0vin"
+I, [2017-08-22T17:34:29.306471 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[root.sh_rdbms] action run
+I, [2017-08-22T17:34:29.306531 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute /opt/oracle/12R1/root.sh
+I, [2017-08-22T17:34:29.753532 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[start_listener] action run
+I, [2017-08-22T17:34:29.753589 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute /opt/oracle/12R1/bin/lsnrctl start
+I, [2017-08-22T17:34:29.783460 #35896]  INFO -- default-elastic-oel-7-x86-64:   * cookbook_file[/opt/oracle/12R1/sqlplus/admin/glogin.sql] action create
+I, [2017-08-22T17:34:29.783510 #35896]  INFO -- default-elastic-oel-7-x86-64:     - update content in file /opt/oracle/12R1/sqlplus/admin/glogin.sql from c0002e to f81c7f
+I, [2017-08-22T17:34:29.783539 #35896]  INFO -- default-elastic-oel-7-x86-64:     --- /opt/oracle/12R1/sqlplus/admin/glogin.sql	2006-01-12 21:36:10.000000000 +0000
+I, [2017-08-22T17:34:29.783557 #35896]  INFO -- default-elastic-oel-7-x86-64:     +++ /opt/oracle/12R1/sqlplus/admin/.chef-glogin20170822-13127-17xzpix.sql	2017-08-22 21:34:28.609119516 +0000
+I, [2017-08-22T17:34:29.783572 #35896]  INFO -- default-elastic-oel-7-x86-64:     @@ -1,16 +1,5 @@
+I, [2017-08-22T17:34:29.783588 #35896]  INFO -- default-elastic-oel-7-x86-64:     ---
+I, [2017-08-22T17:34:29.783637 #35896]  INFO -- default-elastic-oel-7-x86-64:     --- Copyright (c) 1988, 2005, Oracle.  All Rights Reserved.
+I, [2017-08-22T17:34:29.783677 #35896]  INFO -- default-elastic-oel-7-x86-64:     ---
+I, [2017-08-22T17:34:29.783695 #35896]  INFO -- default-elastic-oel-7-x86-64:     --- NAME
+I, [2017-08-22T17:34:29.783709 #35896]  INFO -- default-elastic-oel-7-x86-64:     ---   glogin.sql
+I, [2017-08-22T17:34:29.783736 #35896]  INFO -- default-elastic-oel-7-x86-64:     ---
+I, [2017-08-22T17:34:29.783749 #35896]  INFO -- default-elastic-oel-7-x86-64:     --- DESCRIPTION
+I, [2017-08-22T17:34:29.783762 #35896]  INFO -- default-elastic-oel-7-x86-64:     ---   SQL*Plus global login "site profile" file
+I, [2017-08-22T17:34:29.783775 #35896]  INFO -- default-elastic-oel-7-x86-64:     ---
+I, [2017-08-22T17:34:29.783796 #35896]  INFO -- default-elastic-oel-7-x86-64:     ---   Add any SQL*Plus commands here that are to be executed when a
+I, [2017-08-22T17:34:29.783811 #35896]  INFO -- default-elastic-oel-7-x86-64:     ---   user starts SQL*Plus, or uses the SQL*Plus CONNECT command.
+I, [2017-08-22T17:34:29.784611 #35896]  INFO -- default-elastic-oel-7-x86-64:     ---
+I, [2017-08-22T17:34:29.784721 #35896]  INFO -- default-elastic-oel-7-x86-64:     --- USAGE
+I, [2017-08-22T17:34:29.784759 #35896]  INFO -- default-elastic-oel-7-x86-64:     ---   This script is automatically run
+I, [2017-08-22T17:34:29.784782 #35896]  INFO -- default-elastic-oel-7-x86-64:     ---
+I, [2017-08-22T17:34:29.784798 #35896]  INFO -- default-elastic-oel-7-x86-64:     +define _editor=vi
+I, [2017-08-22T17:34:29.784846 #35896]  INFO -- default-elastic-oel-7-x86-64:     +set sqlprompt _user'@'_connect_identifier>
+I, [2017-08-22T17:34:29.784870 #35896]  INFO -- default-elastic-oel-7-x86-64:     +set pagesize 3000
+I, [2017-08-22T17:34:29.784892 #35896]  INFO -- default-elastic-oel-7-x86-64:     +set linesize 130
+I, [2017-08-22T17:34:29.791855 #35896]  INFO -- default-elastic-oel-7-x86-64:   * template[/etc/init.d/oracle] action create
+I, [2017-08-22T17:34:29.791895 #35896]  INFO -- default-elastic-oel-7-x86-64:     - create new file /etc/init.d/oracle
+I, [2017-08-22T17:34:29.791913 #35896]  INFO -- default-elastic-oel-7-x86-64:     - update content in file /etc/init.d/oracle from none to 10179c
+I, [2017-08-22T17:34:29.791928 #35896]  INFO -- default-elastic-oel-7-x86-64:     --- /etc/init.d/oracle	2017-08-22 21:34:28.620125016 +0000
+I, [2017-08-22T17:34:29.791942 #35896]  INFO -- default-elastic-oel-7-x86-64:     +++ /etc/init.d/.chef-oracle20170822-13127-15k1w82	2017-08-22 21:34:28.620125016 +0000
+I, [2017-08-22T17:34:29.791955 #35896]  INFO -- default-elastic-oel-7-x86-64:     @@ -1 +1,28 @@
+I, [2017-08-22T17:34:29.791968 #35896]  INFO -- default-elastic-oel-7-x86-64:     +#!/bin/sh
+I, [2017-08-22T17:34:29.791980 #35896]  INFO -- default-elastic-oel-7-x86-64:     +#
+I, [2017-08-22T17:34:29.791992 #35896]  INFO -- default-elastic-oel-7-x86-64:     +# Init file for Oracle database server
+I, [2017-08-22T17:34:29.792005 #35896]  INFO -- default-elastic-oel-7-x86-64:     +#
+I, [2017-08-22T17:34:29.792018 #35896]  INFO -- default-elastic-oel-7-x86-64:     +# chkconfig: 35 99 02
+I, [2017-08-22T17:34:29.792030 #35896]  INFO -- default-elastic-oel-7-x86-64:     +# description: Oracle database server
+I, [2017-08-22T17:34:29.792042 #35896]  INFO -- default-elastic-oel-7-x86-64:     + 
+I, [2017-08-22T17:34:29.792054 #35896]  INFO -- default-elastic-oel-7-x86-64:     +case "$1" in
+I, [2017-08-22T17:34:29.792076 #35896]  INFO -- default-elastic-oel-7-x86-64:     +'start')
+I, [2017-08-22T17:34:29.792091 #35896]  INFO -- default-elastic-oel-7-x86-64:     +        su - oracle -c "/opt/oracle/12R1/bin/dbstart /opt/oracle/12R1"
+I, [2017-08-22T17:34:29.792105 #35896]  INFO -- default-elastic-oel-7-x86-64:     +        RETVAL=$?
+I, [2017-08-22T17:34:29.792118 #35896]  INFO -- default-elastic-oel-7-x86-64:     +        [ "$RETVAL" = 0 ] && touch /var/lock/subsys/oracle
+I, [2017-08-22T17:34:29.792131 #35896]  INFO -- default-elastic-oel-7-x86-64:     +        ;;
+I, [2017-08-22T17:34:29.792154 #35896]  INFO -- default-elastic-oel-7-x86-64:     + 
+I, [2017-08-22T17:34:29.792167 #35896]  INFO -- default-elastic-oel-7-x86-64:     +'stop')
+I, [2017-08-22T17:34:29.792179 #35896]  INFO -- default-elastic-oel-7-x86-64:     +        su - oracle -c "/opt/oracle/12R1/bin/dbshut /opt/oracle/12R1"
+I, [2017-08-22T17:34:29.792192 #35896]  INFO -- default-elastic-oel-7-x86-64:     +        RETVAL=$?
+I, [2017-08-22T17:34:29.792205 #35896]  INFO -- default-elastic-oel-7-x86-64:     +        [ "$RETVAL" = 0 ] && rm -f /var/lock/subsys/oracle
+I, [2017-08-22T17:34:29.792226 #35896]  INFO -- default-elastic-oel-7-x86-64:     +        ;;
+I, [2017-08-22T17:34:29.792239 #35896]  INFO -- default-elastic-oel-7-x86-64:     + 
+I, [2017-08-22T17:34:29.792251 #35896]  INFO -- default-elastic-oel-7-x86-64:     +*)
+I, [2017-08-22T17:34:29.792263 #35896]  INFO -- default-elastic-oel-7-x86-64:     +        echo "Usage: $0 { start | stop }"
+I, [2017-08-22T17:34:29.792275 #35896]  INFO -- default-elastic-oel-7-x86-64:     +        exit 1
+I, [2017-08-22T17:34:29.792287 #35896]  INFO -- default-elastic-oel-7-x86-64:     +        ;;
+I, [2017-08-22T17:34:29.792692 #35896]  INFO -- default-elastic-oel-7-x86-64:     + 
+I, [2017-08-22T17:34:29.792705 #35896]  INFO -- default-elastic-oel-7-x86-64:     +esac
+I, [2017-08-22T17:34:29.792717 #35896]  INFO -- default-elastic-oel-7-x86-64:     +exit 0
+I, [2017-08-22T17:34:29.792729 #35896]  INFO -- default-elastic-oel-7-x86-64:     - change mode from '' to '0755'
+I, [2017-08-22T17:34:29.893170 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[install_dir_cleanup] action run
+I, [2017-08-22T17:34:29.893233 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute rm -rf /opt/oracle/install_dir/*
+I, [2017-08-22T17:34:30.197887 #35896]  INFO -- default-elastic-oel-7-x86-64:   * service[oracle] action enable
+I, [2017-08-22T17:34:30.197947 #35896]  INFO -- default-elastic-oel-7-x86-64:     - enable service service[oracle]
+I, [2017-08-22T17:34:30.197969 #35896]  INFO -- default-elastic-oel-7-x86-64:   * ruby_block[set_rdbms_install_flag] action create
+I, [2017-08-22T17:34:30.197987 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute the ruby block set_rdbms_install_flag
+I, [2017-08-22T17:34:30.198004 #35896]  INFO -- default-elastic-oel-7-x86-64: Recipe: oracle_db::latest_dbpatch
+I, [2017-08-22T17:34:30.484939 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[send_stop_to_oracle_service] action run
+I, [2017-08-22T17:34:30.484998 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute service oracle stop
+I, [2017-08-22T17:34:39.147817 #35896]  INFO -- default-elastic-oel-7-x86-64:   * bash[fetch_latest_patch_media] action run
+I, [2017-08-22T17:34:39.148077 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute "bash"  "/tmp/chef-script20170822-13127-17ebksm"
+I, [2017-08-22T17:34:40.819534 #35896]  INFO -- default-elastic-oel-7-x86-64:   * bash[patch_rdbms_opatch] action run
+I, [2017-08-22T17:34:40.819592 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute "bash"  "/tmp/chef-script20170822-13127-3pmfbf"
+I, [2017-08-22T17:34:40.857779 #35896]  INFO -- default-elastic-oel-7-x86-64:   * bash[setup_javavm12] action run
+I, [2017-08-22T17:34:40.857844 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute "bash"  "/tmp/chef-script20170822-13127-5if903"
+I, [2017-08-22T17:36:17.123452 #35896]  INFO -- default-elastic-oel-7-x86-64:   * bash[apply_latest_patch_rdbms] action run
+I, [2017-08-22T17:36:17.123737 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute "bash"  "/tmp/chef-script20170822-13127-6m5igj"
+I, [2017-08-22T17:36:17.123771 #35896]  INFO -- default-elastic-oel-7-x86-64:   * ruby_block[set_latest_patch_install_flag] action create
+I, [2017-08-22T17:36:17.123791 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute the ruby block set_latest_patch_install_flag
+I, [2017-08-22T17:36:17.123808 #35896]  INFO -- default-elastic-oel-7-x86-64: Recipe: oracle_db::get_version
+I, [2017-08-22T17:36:19.420848 #35896]  INFO -- default-elastic-oel-7-x86-64:   * ruby_block[set_rdbms_version_attr] action create
+I, [2017-08-22T17:36:19.420903 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute the ruby block set_rdbms_version_attr
+I, [2017-08-22T17:36:19.420922 #35896]  INFO -- default-elastic-oel-7-x86-64:   * ruby_block[set_rdbms_version_attr] action nothing (skipped due to action :nothing)
+I, [2017-08-22T17:36:19.420936 #35896]  INFO -- default-elastic-oel-7-x86-64: Recipe: oracle_db::latest_dbpatch
+I, [2017-08-22T17:36:19.420950 #35896]  INFO -- default-elastic-oel-7-x86-64:   * ruby_block[set_latest_patch_install_flag] action nothing (skipped due to action :nothing)
+I, [2017-08-22T17:36:20.037233 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[send_start_to_oracle_service] action run
+I, [2017-08-22T17:36:20.037291 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute service oracle start
+I, [2017-08-22T17:36:20.128004 #35896]  INFO -- default-elastic-oel-7-x86-64:   * execute[install_dir_cleanup_lp] action run
+I, [2017-08-22T17:36:20.128063 #35896]  INFO -- default-elastic-oel-7-x86-64:     - execute rm -rf /opt/oracle/install_dir/*
+I, [2017-08-22T17:36:20.247566 #35896]  INFO -- default-elastic-oel-7-x86-64: 
+I, [2017-08-22T17:36:20.247623 #35896]  INFO -- default-elastic-oel-7-x86-64: Running handlers:
+I, [2017-08-22T17:36:20.247641 #35896]  INFO -- default-elastic-oel-7-x86-64: Running handlers complete
+I, [2017-08-22T17:36:20.247658 #35896]  INFO -- default-elastic-oel-7-x86-64: 
+I, [2017-08-22T17:36:20.247673 #35896]  INFO -- default-elastic-oel-7-x86-64: Deprecated features used!
+I, [2017-08-22T17:36:20.247687 #35896]  INFO -- default-elastic-oel-7-x86-64:   node.set is deprecated and will be removed in Chef 14, please use node.default/node.override (or node.normal only if you really need persistence) at 8 locations:
+I, [2017-08-22T17:36:20.247700 #35896]  INFO -- default-elastic-oel-7-x86-64:     - /tmp/kitchen/cache/cookbooks/oracle_db/recipes/default.rb:45:in `from_file'
+I, [2017-08-22T17:36:20.247713 #35896]  INFO -- default-elastic-oel-7-x86-64:     - /tmp/kitchen/cache/cookbooks/oracle_db/recipes/default.rb:46:in `from_file'
+I, [2017-08-22T17:36:20.247725 #35896]  INFO -- default-elastic-oel-7-x86-64:     - /tmp/kitchen/cache/cookbooks/oracle_db/recipes/default.rb:47:in `from_file'
+I, [2017-08-22T17:36:20.247738 #35896]  INFO -- default-elastic-oel-7-x86-64:     - /tmp/kitchen/cache/cookbooks/oracle_db/recipes/dbbin.rb:194:in `block (2 levels) in from_file'
+I, [2017-08-22T17:36:20.247750 #35896]  INFO -- default-elastic-oel-7-x86-64:     - /tmp/kitchen/cache/cookbooks/oracle_db/recipes/latest_dbpatch.rb:98:in `block (2 levels) in from_file'
+I, [2017-08-22T17:36:20.247762 #35896]  INFO -- default-elastic-oel-7-x86-64:     - /tmp/kitchen/cache/cookbooks/oracle_db/recipes/get_version.rb:32:in `block (2 levels) in from_file'
+I, [2017-08-22T17:36:20.247775 #35896]  INFO -- default-elastic-oel-7-x86-64:     - /tmp/kitchen/cache/cookbooks/oracle_db/recipes/get_version.rb:33:in `block (2 levels) in from_file'
+I, [2017-08-22T17:36:20.247787 #35896]  INFO -- default-elastic-oel-7-x86-64:     - /tmp/kitchen/cache/cookbooks/oracle_db/recipes/get_version.rb:34:in `block (2 levels) in from_file'
+I, [2017-08-22T17:36:20.247800 #35896]  INFO -- default-elastic-oel-7-x86-64:    See https://docs.chef.io/deprecations_attributes.html for further details.
+I, [2017-08-22T17:36:20.247811 #35896]  INFO -- default-elastic-oel-7-x86-64: 
+I, [2017-08-22T17:36:20.247823 #35896]  INFO -- default-elastic-oel-7-x86-64: Chef Client finished, 38/44 resources updated in 06 minutes 03 seconds
+I, [2017-08-22T17:36:20.310796 #35896]  INFO -- default-elastic-oel-7-x86-64: Finished converging <default-elastic-oel-7-x86-64> (6m4.99s).

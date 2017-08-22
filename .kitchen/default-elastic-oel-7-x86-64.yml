@@ -1,0 +1,7 @@
+---
+hostname: 127.0.0.1
+port: '2201'
+username: vagrant
+ssh_key: "/Users/georgezhang/chef-repo/cookbooks/oracle_db/.kitchen/kitchen-vagrant/kitchen-oracle_db-default-elastic-oel-7-x86-64/.vagrant/machines/default/virtualbox/private_key"
+last_action: converge
+last_error: 
