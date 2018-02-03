@@ -77,8 +77,7 @@ default[:oracle_db][:rdbms][:env_12c] = {'ORACLE_BASE' => node[:oracle_db][:ora_
                                   'ORACLE_HOME' => node[:oracle_db][:rdbms][:ora_home_12c],
                                   'PATH' => "/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/usr/sbin:#{node[:oracle_db][:ora_base]}/dba/bin:#{node[:oracle_db][:rdbms][:ora_home_12c]}/bin:#{node[:oracle_db][:rdbms][:ora_home_12c]}/OPatch"}
 
-default[:oracle_db][:rdbms][:install_files] = ['http://10.0.2.2/~georgezhang/linuxamd64_12102_database_1of2.zip',
-                                            'http://10.0.2.2/~georgezhang/linuxamd64_12102_database_2of2.zip']
+default[:oracle_db][:rdbms][:install_files] = ['http://chef-assets.centroid.com/software/oracle_db/linuxx64_12201_database.zip']
 
 # Client dependencies
 default[:oracle_db][:client][:deps] = ['binutils', 'compat-libcap1', 'compat-libstdc++-33', 'compat-libstdc++-33.i686', 'gcc', 'gcc-c++', 'glibc', 'glibc.i686',
